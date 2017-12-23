@@ -28,7 +28,7 @@ int main(void){
 
 	FILE*fp;
 
-	fp = fopen("./ex1.txt","w");
+	fp = fopen("./data.txt","w");
 	
 
 	for (int i = 0; i <= (steps -1); i++){
