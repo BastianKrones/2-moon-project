@@ -8,7 +8,7 @@ int main() {
 
 	//define the intervall
 	float t_0 = 0;
-	float T = 10;
+	float T = 20;
 
 	float x_0 = 1; //starting position
 

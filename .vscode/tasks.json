@@ -6,7 +6,7 @@
             "type": "shell",
             "command": "gcc",
             "args": [
-                "-g", "main.c"
+                "-g", "exercise_1/ex1.c"
             ],
             "group": {
                 "kind": "build",
