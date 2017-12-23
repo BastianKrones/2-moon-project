@@ -4,7 +4,7 @@
 
 
 int main(void){		
-	float h = 0.5; //stepsize
+	float h = 0.05; //stepsize
 	float a = 1; //short for alpha
 
 	//define the intervall
@@ -32,11 +32,11 @@ int main(void){
 	
 
 	for (int i = 0; i <= (steps -1); i++){
-		fprintf(fp, "%f %10f \n", t[i], x[i]);
+		fprintf(fp, "%f %11f \n", t[i], x[i]);
 	}
 
 	fclose(fp);
-
+	
 	return 0;
 	
 }
