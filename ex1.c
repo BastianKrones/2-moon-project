@@ -28,7 +28,7 @@ int main(void){
 
 	FILE*fp;
 
-	fp = fopen("/home/kj/Dropbox/Studium/Semester 3/Progri/2-moon-project/ex1.txt","w");
+	fp = fopen("./ex1.txt","w");
 	
 
 	for (int i = 0; i <= (steps -1); i++){
