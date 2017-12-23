@@ -2,13 +2,10 @@
 #include <stdlib.h>
 #include <math.h>
 
-int main(void)
-{
-	//stepsize
-	float h = 0.05;
+int main(void){		
+	float h = 0.01; //stepsize
+	float a = 1; //short for alpha
 
-	//short for alpha
-	float a = 1;
 	//define the intervall
 	float t_0 = 0;
 	float T = 20;
