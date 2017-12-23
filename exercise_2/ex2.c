@@ -3,22 +3,22 @@
 #include <math.h>
 
 
-float funtion(x,v){
-	return 
+float f(float v,float x){
+	float w = 1; //short for alpha
+	return -w*x;
 }
 
 
 
-int main(void){		
+int main(void){
 	float h = 0.05; //stepsize
-	float a = 1; //short for alpha
 
 	//define the intervall
 	float t_0 = 0;
 	float T = 10;
 
 	float x_0 = 0; //starting parameters
-	float v_0 = 1
+	float v_0 = 1;
 
 	int steps = (T - t_0)/h; //Nuber of steps needed
 	double t[steps];
@@ -29,11 +29,22 @@ int main(void){
 	v[0] = v_0;
 	x[0] = x_0;
 
+	
+	double k1, k2, k3, k4, w1, w2, w3, w4;
+
 	for (int i = 1; i <= (steps -1); i++){
-		k1 = h*v[i-1]
-		w2 = h*
+		k1 = h*v[i-1];
+		w1 = h*f(v[i-1],x[i-1]);
+		k2 = h*(v[i-1] + w1/2);
+		w2 = h*f(v[i-1] + w1/2, x[i-1] + k1/2);
+		k3 = h*(v[i-1] + w2/2);
+		w3 = h*f(v[i-1] + w2/2, x[i-1] + k2/2);
+		k4 = h*(v[i-1] + w3/2);
+		w4 = h*f(v[i-1] + w3/2, x[i-1] + k3/2);
+
 		t[i] = t[i-1] + h;
-		x[i] = x[i-1] - a * x[i-1] * h;
+		x[i] = x[i-1] + k1/6 + k2/3 + k3/3 + k4/6;
+		v[i] = v[i-1] + w1/6 + w2/3 + w3/3 + w4/6;
 	}
 	
 
@@ -43,7 +54,7 @@ int main(void){
 	
 
 	for (int i = 0; i <= (steps -1); i++){
-		fprintf(fp, "%f %11f \n", t[i], x[i]);
+		fprintf(fp, "%f %11f %11f\n", t[i], x[i], v[i]);
 	}
 
 	fclose(fp);
