@@ -24,7 +24,19 @@ int main(void){
 		t[i] = t[i-1] + h;
 		x[i] = x[i-1] - a * x[i-1] * h;
 	}
+	
 
-	fp = fopen("c:
+	FILE*fp;
+
+	fp = fopen("/home/kj/Dropbox/Studium/Semester 3/Progri/2-moon-project/ex1.txt","w");
+	
+
+	for (int i = 0; i <= (steps -1); i++){
+		fprintf(fp, "%f %10f \n", t[i], x[i]);
+	}
+
+	fclose(fp);
+
+	return 0;
 	
 }
