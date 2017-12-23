@@ -4,7 +4,7 @@
 
 
 int main(void){		
-	float h = 0.5; //stepsize
+	float h = 0.05; //stepsize
 	float a = 1; //short for alpha
 
 	//define the intervall
