@@ -11,7 +11,7 @@ float f(float v,float x){
 
 
 int main(void){
-	float h = 0.05; //stepsize
+	double h = 0.0000000005; //stepsize
 
 	//define the intervall
 	float t_0 = 0;
