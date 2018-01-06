@@ -2,43 +2,33 @@
 #include <stdlib.h>
 #include <math.h>
 
-#define N 3
-#define D 2
-#define g 6.67408 * pow(10,-11)
-#define S //need to calculated before
-//set inertial condition in form of xIJ where I is the I-th body and J the J-th dimention
-//set inertial condition in form of vIJ where I is the I-th body and J the J-th dimention
+#include "initial_data.h"
 
-//the force applied on the i-th body due to the j-th body
+//the force applied on the i-th body due to the j-th body at the d-th dimention
 double fInternal(int i, int j, int d, int step, double x[N][D][S], double m[N]) {
-	if i==j {
+	if (i==j) {
 		return 0;
 	}
 	else {
-		double G = g;
-		//maybe change negative sign
-		return -G * (m[i]*m[j])/(pow(x[i][0][step] - x[j][0][step],2) + pow(x[i][1][step] - x[j][1][step],2) + pow(x[i][2][step] - x[j][2][step],2))	
+		//maybe add a negative sign
+		return G * (m[i]*m[j])/
+			pow(pow(x[i][0][step] - x[j][0][step],2) 
+			+ pow(x[i][1][step] - x[j][1][step],2) 
+			+ pow(x[i][2][step] - x[j][2][step],2),3/2) 
+			* (x[j][d][step] - x[i][d][step]);
 	}
 }
 
-//all the forces acting on the j-th body
+//all the forces acting on the j-th body at the d-th dimention
 double fExternal(int i, int d, int step, double x[N][D][S], double m[N]){
-	double G = g;
-	double radius = 0;
-	for (int k = 0, k < N, k++){
-		radius += pow(x[i][k][step], 2);
+	//maybe change negative sign here too
+	double force = -G * (m[0]*m[i])/pow(pow(x[i][0][step],2) + pow(x[i][1][step],2) + pow(x[i][2][step],2) ,3/2) * x[i][d][step];
+	for (int j = 1; j < N; j++){
+		force += fInternal(i, j, d, step, x, m);
 	}
-	double force = -G * (m[0]*m[i])/radius
-	for (int j = 1, j < N, j++){
-		force += fInternal(i, j, d, step, x, m)
-	}
-
+	return force;
 }
 
-//calculate the energy
-double calculate_energy(double x10, double x11, double x20, double x22, ){
-	double E = 
-}
 
 int main(void) {
 	//inertial parameters (position, velocity, time of simulation)
@@ -57,9 +47,15 @@ int main(void) {
 		double m[N];
 	} RungeKutta4;
 	
-	RungeKutta4 rg = {
-		.energy[0] = 
-	};	
+
+	for (int b = 0; b<N; b++){
+		for (int z = 0; z<D; z++){	
+			RungeKutta4 rg = {
+				.x[b][z][0] = initial_positions[b][z];
+				.v[b][z][0] = initial_velocities[b][z];
+			};	
+		}
+	}
 
 
 
