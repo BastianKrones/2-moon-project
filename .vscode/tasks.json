@@ -6,8 +6,8 @@
             "type": "shell",
             "command": "gcc",
             "args": [
-                "-g", "exercise_1/ex1.c",
-                "-o", "exercise_1/ex1"
+                "-g", "simulation/main.c",
+                "-o", "simulation/main"
             ],
             "group": {
                 "kind": "build",
