@@ -2,10 +2,8 @@
 #include <stdlib.h>
 #include <math.h>
 
-#define N 3
-#define D 2
-#define G 6.67408 * pow(10, -11)
-#define S 20
+#include "initial_data.h"
+
 
 //the force applied on the i-th body due to the j-th body at the d-th dimention
 double fInternal(int i, int j, int d, int step, double x[N][D][S], double m[N])
@@ -34,6 +32,9 @@ double fExternal(int i, int d, int step, double x[N][D][S], double m[N])
 	}
 	return force;
 }
+
+//calculate the next step
+double Next(int step)
 
 //calculate the energy for each step
 double calculate_energy(double x[N][D][S], double v[N][D][S], double m[N], int step){
@@ -66,6 +67,17 @@ double calculate_acceleration(int i, int d, int step, double x[N][D][S], double 
 	return fExternal(i, d, step, x, m)/m[i];
 }
 
+//rungekutta shit lol :)
+double Next(double h, int step, double t[S], double x[N][D][S], double v[N][D][S]){
+	double k[N][3], k[N][3];
+	for (int i = 1; i<N; i++){
+		for (int j = 1; j<3; j++){
+			k[i][j]
+		}
+	}
+
+}
+
 
 int main(void)
 {
@@ -93,6 +105,7 @@ int main(void)
 	double m[N];
 
 	//initialize the starting conditionis
+	t[0] = t_0;
 	for (int b = 0; b < N; b++)
 	{
 		for (int z = 0; z < D; z++)
@@ -101,6 +114,16 @@ int main(void)
 			v[b][z][0] = initial_velocities[b][z];
 			energy[0] = calculate_energy(x, v, m, 0);
 			a[b][z][0] = calculate_acceleration(b, z, 0, x, m);
+		}
+	}
+	
+	L = 1 //stepcounter
+	while (L<S){
+		L += 1;
+		for (int j = 1; j < N; j++){
+			for (int k = 1; k < D; k++){
+				Next(h, L, *t, *x, *v);
+			}
 		}
 	}
 
