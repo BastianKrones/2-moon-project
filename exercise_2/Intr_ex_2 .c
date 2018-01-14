@@ -1,3 +1,4 @@
+// The 2nd introductory exercise
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
