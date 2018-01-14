@@ -15,8 +15,11 @@ double fInternal(int i, int j, int d, int step, double x[N][D][S], double m[N])
 	else
 	{
 		//maybe add a negative sign
-		return G * (m[i] * m[j]) /
-			   pow(pow(x[i][0][step] - x[j][0][step], 2) + pow(x[i][1][step] - x[j][1][step], 2) + pow(x[i][2][step] - x[j][2][step], 2), 3 / 2) * (x[j][d][step] - x[i][d][step]);
+		double rquar;
+		for (int b = 0; b < D; b++){
+			rquar += pow(x[i][b][step] - x[j][b][step], 2); 
+		}
+		return G * (m[i] * m[j]) / pow(rquar, 3 / 2) * (x[j][d][step] - x[i][d][step]);
 	}
 }
 
@@ -34,7 +37,7 @@ double fExternal(int i, int d, int step, double x[N][D][S], double m[N])
 }
 
 //calculate the next step
-double Next(int step)
+//double Next(int step):
 
 //calculate the energy for each step
 double calculate_energy(double x[N][D][S], double v[N][D][S], double m[N], int step){
@@ -69,10 +72,10 @@ double calculate_acceleration(int i, int d, int step, double x[N][D][S], double 
 
 //rungekutta shit lol :)
 double Next(double h, int step, double t[S], double x[N][D][S], double v[N][D][S]){
-	double k[N][3], k[N][3];
+	double k[N][3], w[N][3];
 	for (int i = 1; i<N; i++){
 		for (int j = 1; j<3; j++){
-			k[i][j]
+			k[i][j];
 		}
 	}
 
@@ -89,7 +92,6 @@ int main(void)
 
 
 	// InitialIposition of all bodies (first entry = Saturn, second = moon 1, third = moon 2)
-	const double initial_positions[N][D] = { {0, 0}, {1, 1}, {1, -1} };
 
 	// Initialvelocities of all bodies
 	const int initial_velocities[N][D] = { {0, 0}, {0, 0}, {0, 0} };
@@ -110,7 +112,7 @@ int main(void)
 	{
 		for (int z = 0; z < D; z++)
 		{
-			x[b][z][0] = initial_positions[b][z];
+			x[b][z][0] = initial_pos(b,z);
 			v[b][z][0] = initial_velocities[b][z];
 			energy[0] = calculate_energy(x, v, m, 0);
 			a[b][z][0] = calculate_acceleration(b, z, 0, x, m);

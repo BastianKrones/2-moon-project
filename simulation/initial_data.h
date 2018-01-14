@@ -1,9 +1,5 @@
-extern const double t_0;
-extern const double t_1;
-extern const int N;
-extern const int D;
-extern const double G;
-extern const int S;
-extern const double initial_positions[N][D];
-extern const double initial_velocities[N][D];
-extern const double initial_mass[N];
+#define N 3
+#define D 2
+#define G 6.67408 * pow(10, -11)
+#define S 2
+double initial_pos();
