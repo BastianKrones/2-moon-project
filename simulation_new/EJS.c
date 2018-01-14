@@ -1,8 +1,11 @@
+// The simulation main program
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
 
-#include "initial_data.h"
+#include "input_parameters.h"
+#include "input_physical_data.h"
 
 //the force applied on the i-th body due to the j-th body at the d-th dimention
 double fInternal(int i, int j, int d, int step, double x[N][D][S], double m[N])
