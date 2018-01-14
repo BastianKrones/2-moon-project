@@ -28,7 +28,7 @@ double fInternal(int i, int j, int d, int step, double x[N][D][S], double m[N])
 }
 
 //all the forces acting on the j-th body at the d-th dimention
-double fExternal(int i, int d, int step, double x[N][D][S], double m[N])
+double fExternal(int i, int d, int step, double x[3][2][20], double m[3])
 {
     //maybe change negative sign here too
     double force = -G * (m[0] * m[i]) / pow(pow(x[i][0][step], 2) + pow(x[i][1][step], 2) + pow(x[i][2][step], 2), 3 / 2) * x[i][d][step];
@@ -76,6 +76,7 @@ double calculate_acceleration(int i, int d, int step, double x[N][D][S], double 
 
 int main(void)
 {
+
     // Starttime
     const double t_0 = 0;
 
@@ -90,20 +91,28 @@ int main(void)
     double x[N][D][S], v[N][D][S], a[N][D][S], t[S];
     double m[N];
 
-    //initialize the starting conditionis
+    // initialize the starting conditionis
     t[0] = t_0;
     for (int b = 0; b < N; b++)
     {
+        m[b] = initial_masses(b);
         for (int z = 0; z < D; z++)
         {
             x[b][z][0] = initial_pos(b, z);
             v[b][z][0] = initial_velocities(b, z);
-            energy[0] = calculate_energy(x, v, m, 0);
-            a[b][z][0] = calculate_acceleration(b, z, 0, x, m);
         }
     }
 
-    L = 1; //stepcounter
+    // for (int b = 0; b < N; b++)
+    // {
+    //     for (int z = 0; z < D; z++)
+    //     {
+    //         energy[0] = calculate_energy(x, v, m, 0);
+    //         a[b][z][0] = calculate_acceleration(b, z, 0, x, m);
+    //     }
+    // }
+
+    int L = 1; //stepcounter
     while (L < S)
     {
         L += 1;

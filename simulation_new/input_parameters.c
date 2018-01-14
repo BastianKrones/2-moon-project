@@ -1,5 +1,4 @@
 // Parameters of the simulation (t0 , tf , h, prec , ...)
-
 // Starttime
 double t_0()
 {
@@ -27,16 +26,9 @@ double prec()
     return prec;
 }
 
-// Steps of simulation | needs to be calculated individually
-int S()
-{
-    const int S = 20;
-    return S;
-}
-
 // Gravitational constant
-double G()
-{
-    const double G = 6.67408 * pow(10, -11);
-    return G;
-}
+// double G()
+// {
+//     const double G = 6.67408 * pow(10, -11);
+//     return G;
+// }
