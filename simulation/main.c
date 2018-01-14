@@ -4,7 +4,6 @@
 
 #include "initial_data.h"
 
-
 //the force applied on the i-th body due to the j-th body at the d-th dimention
 double fInternal(int i, int j, int d, int step, double x[N][D][S], double m[N])
 {
@@ -16,8 +15,9 @@ double fInternal(int i, int j, int d, int step, double x[N][D][S], double m[N])
 	{
 		//maybe add a negative sign
 		double rquar;
-		for (int b = 0; b < D; b++){
-			rquar += pow(x[i][b][step] - x[j][b][step], 2); 
+		for (int b = 0; b < D; b++)
+		{
+			rquar += pow(x[i][b][step] - x[j][b][step], 2);
 		}
 		return G * (m[i] * m[j]) / pow(rquar, 3 / 2) * (x[j][d][step] - x[i][d][step]);
 	}
@@ -40,25 +40,24 @@ double fExternal(int i, int d, int step, double x[N][D][S], double m[N])
 //double Next(int step):
 
 //calculate the energy for each step
-double calculate_energy(double x[N][D][S], double v[N][D][S], double m[N], int step){
+double calculate_energy(double x[N][D][S], double v[N][D][S], double m[N], int step)
+{
 	double energy = 0;
-	for (int i = 1; 1<N; i++){
-		for (int k = i; k<N; k++){
-			if (k==i){
-				energy += 1/2 * m[k] * 
-					(pow(v[k][0][step],2) 
-					 + pow(v[k][1][step],2) 
-					 + pow(v[k][2][step],2))
-					- G * m[0] * m[k] /	
-					(pow(x[k][0][step],2) 
-					 + pow(x[k][1][step],2) 
-					 + pow(x[k][2][step],2));
+	for (int i = 1; 1 < N; i++)
+	{
+		for (int k = i; k < N; k++)
+		{
+			if (k == i)
+			{
+				energy += 1 / 2 * m[k] *
+							  (pow(v[k][0][step], 2) + pow(v[k][1][step], 2) + pow(v[k][2][step], 2)) -
+						  G * m[0] * m[k] /
+							  (pow(x[k][0][step], 2) + pow(x[k][1][step], 2) + pow(x[k][2][step], 2));
 			}
-			else {
-				energy += -G * m[k] * m[i] / 
-					(pow(x[k][0][step] - x[i][0][step],2) 
-					 + pow(x[k][1][step] - x[i][1][step],2) 
-					 + pow(x[k][2][step] - x[i][2][step],2));
+			else
+			{
+				energy += -G * m[k] * m[i] /
+						  (pow(x[k][0][step] - x[i][0][step], 2) + pow(x[k][1][step] - x[i][1][step], 2) + pow(x[k][2][step] - x[i][2][step], 2));
 			}
 		}
 	}
@@ -66,21 +65,23 @@ double calculate_energy(double x[N][D][S], double v[N][D][S], double m[N], int s
 }
 
 //calculate accseleration acting on the i-th body
-double calculate_acceleration(int i, int d, int step, double x[N][D][S], double m[N]){
-	return fExternal(i, d, step, x, m)/m[i];
+double calculate_acceleration(int i, int d, int step, double x[N][D][S], double m[N])
+{
+	return fExternal(i, d, step, x, m) / m[i];
 }
 
 //rungekutta shit lol :)
-double Next(double h, int step, double t[S], double x[N][D][S], double v[N][D][S]){
+double Next(double h, int step, double t[S], double x[N][D][S], double v[N][D][S])
+{
 	double k[N][3], w[N][3];
-	for (int i = 1; i<N; i++){
-		for (int j = 1; j<3; j++){
+	for (int i = 1; i < N; i++)
+	{
+		for (int j = 1; j < 3; j++)
+		{
 			k[i][j];
 		}
 	}
-
 }
-
 
 int main(void)
 {
@@ -90,14 +91,6 @@ int main(void)
 	// Endtime
 	const double t_1 = 1;
 
-
-	// InitialIposition of all bodies (first entry = Saturn, second = moon 1, third = moon 2)
-
-	// Initialvelocities of all bodies
-	const int initial_velocities[N][D] = { {0, 0}, {0, 0}, {0, 0} };
-
-	// Mass of all bodies
-	const int initial_mass[N] = { 1, 1, 1 };
 	//stepsize of simulation
 	double h = 0.1;
 
@@ -112,18 +105,21 @@ int main(void)
 	{
 		for (int z = 0; z < D; z++)
 		{
-			x[b][z][0] = initial_pos(b,z);
-			v[b][z][0] = initial_velocities[b][z];
+			x[b][z][0] = initial_pos(b, z);
+			v[b][z][0] = initial_velocities(b,z);
 			energy[0] = calculate_energy(x, v, m, 0);
 			a[b][z][0] = calculate_acceleration(b, z, 0, x, m);
 		}
 	}
-	
-	L = 1 //stepcounter
-	while (L<S){
+
+	L = 1; //stepcounter
+	while (L < S)
+	{
 		L += 1;
-		for (int j = 1; j < N; j++){
-			for (int k = 1; k < D; k++){
+		for (int j = 1; j < N; j++)
+		{
+			for (int k = 1; k < D; k++)
+			{
 				Next(h, L, *t, *x, *v);
 			}
 		}
