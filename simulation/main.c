@@ -70,14 +70,14 @@ double calculate_acceleration(int i, int d, int step, double x[N][D][S], double 
 	return fExternal(i, d, step, x, m) / m[i];
 }
 
-//rungekutta shit lol :)
+//rungekutta shit lol :
 double Next(double h, int step, double t[S], double x[N][D][S], double v[N][D][S]){
 	
 	//these k and w variables
 	double k[N][D][3], w[N][D][3];
 
 	double vprime[N][D][S] = v;
-       	double xprimt[N][D][S] = x;
+       	double xprime[N][D][S] = x;
 
 
 	//calculate k1 and w1
@@ -141,6 +141,7 @@ double Next(double h, int step, double t[S], double x[N][D][S], double v[N][D][S
 		}
 	}
 	return x, v;
+}
 
 
 
