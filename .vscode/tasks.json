@@ -2,12 +2,26 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "build hello world",
+            "label": "test project",
             "type": "shell",
             "command": "gcc",
             "args": [
-                "-g", "simulation_new/input_parameters.c simulation_new/input_physical_data.c simulation_new/input_physical_data.h simulation_new/Runge_Kutta_4.c simulation_new/EJS.c",
-                "-o", "simulation_new/EJS",
+                "-g", "simulation/input_parameters.c simulation/input_physical_data.c simulation/test/input_parameters_TEST.c simulation/test/input_physical_data_TEST.c simulation/test/main_TEST.c",
+                "-o", "simulation/test/test_ejs",
+                "-lm"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "build project",
+            "type": "shell",
+            "command": "gcc",
+            "args": [
+                "-g", "simulation/input_parameters.c simulation/input_physical_data.c simulation/runge_kutta_4.c simulation/ejs.c",
+                "-o", "simulation/ejs",
                 "-lm"
             ],
             "group": {

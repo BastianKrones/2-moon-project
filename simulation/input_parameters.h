@@ -1,5 +1,7 @@
 // Parameters of the simulation (t0 , tf , h, prec , ...)
 #include <math.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 #define N 3
 #define D 2
@@ -7,6 +9,7 @@
 #define t_0 0
 #define t_1 20
 #define prec 1
+#define S size()
 
-int S;
+int size();
 double h();
