@@ -9,4 +9,4 @@ double h()
 }
 
 //needs to be calculated before ... for now!
-int S = 40;
+int S = ();
