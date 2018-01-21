@@ -8,5 +8,8 @@ double h()
     return h;
 }
 
-//needs to be calculated before ... for now!
-int S = 40;
+int Size()
+{
+    int B = (t_1 - t_0)/h();
+    return B;
+}
