@@ -57,28 +57,3 @@ short initial_pos_TEST()
         return 0;
     }
 }
-
-// Mass of all bodies
-/* short initial_masses_TEST(int n)
-{
-	if(h() == 0.5)
-    {
-        return 1;
-    }
-    else
-    {
-        return 0;
-    }
-}
-
-short initial_pos_TEST(int b, int z)
-{
-	if(h() == 0.5)
-    {
-        return 1;
-    }
-    else
-    {
-        return 0;
-    }
-} */
