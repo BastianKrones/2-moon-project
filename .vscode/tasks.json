@@ -2,6 +2,11 @@
     "version": "2.0.0",
     "tasks": [
         {
+            "label": "Clearing command line",
+            "type": "shell",
+            "command": "clear"
+        },
+        {
             "label": "build hello world",
             "type": "shell",
             "command": "gcc",
