@@ -3,24 +3,10 @@
 
 short h_TEST()
 {
-    if(h() == 0.5)
-    {
-        return 1;
-    }
-    else
-    {
-        return 0;
-    }
+    (h() == 0.5) ? 1 : 0;
 }
 
 short size_TEST()
 {
-    if(h() == 40)
-    {
-        return 1;
-    }
-    else
-    {
-        return 0;
-    }
+    (h() == 40) ? 1 : 0;
 }

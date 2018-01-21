@@ -16,6 +16,6 @@ void main()
 
 void print_test(char func_name[], short return_value)
 {
-    printf("%s : %s \n", (return_value==1) ? "[SUCCESS]" : "[FAILED] ", func_name);
+    printf("%s: %s \n", (return_value==1) ? "SUCCESS" : "FAILED ", func_name);
     return;
-}
+}-.
