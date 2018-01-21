@@ -1,19 +1,16 @@
 // The simulation main program
-
-#include <stdio.h>
-#include <stdlib.h>
-
 // #include "Runge_Kutta_4.h"
 #include "runge_kutta_4.h"
 
 
 int main(void)
 {
+    printf("test1");
     //define everything
     double energy[S];
     double x[N][D][S], v[N][D][S], a[N][D][S], t[S];
     double m[N];
-
+    printf("test2");
     //initialize starting conditions
     t[0] = t_0;
     for (int b = 0; b < N; b++)
@@ -26,6 +23,7 @@ int main(void)
         }
     }
 
+    printf("test3");
     energy[0] = calculate_energy(x, v, m, 0);
 
 
