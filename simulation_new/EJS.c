@@ -34,7 +34,7 @@ int main(void)
     {
         L += 1;
         Next(h(), L, &t, &x, &v, m);
-        energy[L + 1] = calculate_acceleration(x, v, m, L);
+        energy[L + 1] = calculate_energy(x, v, m, L);
     }
 
     return 0; //this ... is .... SPARTAAAAA!!!!!
