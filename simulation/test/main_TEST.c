@@ -2,11 +2,21 @@
 #include "input_parameters_TEST.h"
 #include "input_physical_data_TEST.h"
 
+void print_test(char [], short);
+
 void main()
 {
-    printf("h()-Function: %i \n", h_TEST());
-    printf("size()-Function: %i \n", h_TEST());
-    printf("initial_velocities_TEST-Function: %i \n", initial_velocities_TEST());
-    printf("initial_masses_TEST-Function: %i \n", initial_masses_TEST());
-    printf("initial_pos_TEST-Function: %i \n", initial_pos_TEST());
+    printf("Testing functions: \n");
+    print_test("h", h_TEST());
+    print_test("size", h_TEST());
+    print_test("initial_velocities", initial_velocities_TEST());
+    print_test("initial_masses", initial_masses_TEST());
+    print_test("initial_pos", initial_pos_TEST());
+}
+
+void print_test(char func_name[], short return_value)
+{
+    printf("%s : %s \n", (return_value==1) ? "[SUCCESS]" : "[FAILED] ", func_name);
+    // printf("Function-test %s %s \n", func_name, (return_value==1) ? "was successful" : "failed");
+    return;
 }
