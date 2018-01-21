@@ -6,15 +6,14 @@
 // #include "Runge_Kutta_4.h"
 #include "Runge_Kutta_4.h"
 
-
-
 int main(void)
 {
+    //define everything
     double energy[S];
     double x[N][D][S], v[N][D][S], a[N][D][S], t[S];
     double m[N];
 
-    // initialize the starting conditionis
+    //initialize starting conditions
     t[0] = t_0;
     for (int b = 0; b < N; b++)
     {
@@ -26,27 +25,17 @@ int main(void)
         }
     }
 
-    for (int b = 0; b < N; b++)
-    {
-        for (int z = 0; z < D; z++)
-        {
-            energy[0] = calculate_energy(x, v, m, 0);
-            a[b][z][0] = calculate_acceleration(b, z, 0, x, m);
-        }
-    }
+    energy[0] = calculate_energy(x, v, m, 0);
 
+
+    //calculate every f***ing step
     int L = 1; //stepcounter
     while (L < S)
     {
         L += 1;
-        for (int j = 1; j < N; j++)
-        {
-            for (int k = 1; k < D; k++)
-            {
-                Next(h(), L, &t, &x, &v, m);
-            }
-        }
+        Next(h(), L, &t, &x, &v, m);
+        energy[L + 1] = calculate_acceleration(x, v, m, L);
     }
 
-    return 0;
+    return 0; //this ... is .... SPARTAAAAA!!!!!
 }

@@ -8,4 +8,5 @@ double h()
     return h;
 }
 
-int S = 20;
+//needs to be calculated before ... for now!
+int S = 40;
