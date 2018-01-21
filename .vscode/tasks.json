@@ -2,12 +2,21 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "Clearing command line",
+            "label": "test project",
             "type": "shell",
-            "command": "clear"
+            "command": "gcc",
+            "args": [
+                "-g", "simulation/input_parameters.c simulation/test/input_parameters_TEST.c simulation/test/main_TEST.c",
+                "-o", "simulation/test_ejs",
+                "-lm"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
         },
         {
-            "label": "build hello world",
+            "label": "build project",
             "type": "shell",
             "command": "gcc",
             "args": [

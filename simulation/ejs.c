@@ -33,7 +33,7 @@ int main(void)
     int L = 1; //stepcounter
     while (L < S)
     {   
-        printf("%e", L/S);
+        printf("%f", 1.0*L/S);
         L += 1;
         Next(h(), L, &t, &x, &v, m);
         energy[L + 1] = calculate_energy(x, v, m, L);

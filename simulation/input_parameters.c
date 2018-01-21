@@ -8,7 +8,7 @@ double h()
     return h;
 }
 
-int Size()
+int size()
 {
     int B = (t_1 - t_0)/h();
     return B;
