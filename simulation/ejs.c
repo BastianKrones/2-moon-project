@@ -4,7 +4,7 @@
 #include <stdlib.h>
 
 // #include "Runge_Kutta_4.h"
-#include "Runge_Kutta_4.h"
+#include "runge_kutta_4.h"
 
 
 int main(void)

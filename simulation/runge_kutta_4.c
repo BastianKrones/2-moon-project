@@ -1,5 +1,5 @@
 // The definition of the Runge Kutta algorithm functions
-#include "Runge_Kutta_4.h"
+#include "runge_kutta_4.h"
 
 
 double fInternal(int i, int j, int d, int step, double x[N][D][S], double m[N])
