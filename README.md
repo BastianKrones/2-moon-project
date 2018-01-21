@@ -32,4 +32,5 @@
 6. Write (Unit)-Tests --> <span style="color:red">work in progress</span>
 7. Implement #ifndef to avoid multiple variable calls
 8. Adjust the pow function so that there isin't a int as parameter
+9. fix calculate_energy 
 9. PARTY!!!
