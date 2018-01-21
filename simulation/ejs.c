@@ -9,11 +9,12 @@
 
 int main(void)
 {
+    printf("test1");
     //define everything
     double energy[S];
     double x[N][D][S], v[N][D][S], a[N][D][S], t[S];
     double m[N];
-
+    printf("test2");
     //initialize starting conditions
     t[0] = t_0;
     for (int b = 0; b < N; b++)
@@ -26,6 +27,7 @@ int main(void)
         }
     }
 
+    printf("test3");
     energy[0] = calculate_energy(x, v, m, 0);
 
 
@@ -33,7 +35,7 @@ int main(void)
     int L = 1; //stepcounter
     while (L < S)
     {   
-        printf("%e", L/S);
+        printf("%f", 1.0*L/S);
         L += 1;
         Next(h(), L, &t, &x, &v, m);
         energy[L + 1] = calculate_energy(x, v, m, L);
