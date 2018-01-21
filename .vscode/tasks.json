@@ -6,7 +6,7 @@
             "type": "shell",
             "command": "gcc",
             "args": [
-                "-g", "simulation/input_parameters.c simulation/test/input_parameters_TEST.c simulation/test/main_TEST.c",
+                "-g", "simulation/input_parameters.c simulation/input_physical_data.c simulation/test/input_parameters_TEST.c simulation/test/input_physical_data_TEST.c simulation/test/main_TEST.c",
                 "-o", "simulation/test_ejs",
                 "-lm"
             ],
@@ -20,7 +20,7 @@
             "type": "shell",
             "command": "gcc",
             "args": [
-                "-g", "simulation/input_parameters.c simulation/input_physical_data.c simulation/input_physical_data.h simulation/runge_kutta_4.c simulation/ejs.c",
+                "-g", "simulation/input_parameters.c simulation/input_physical_data.c simulation/runge_kutta_4.c simulation/ejs.c",
                 "-o", "simulation/ejs",
                 "-lm"
             ],
