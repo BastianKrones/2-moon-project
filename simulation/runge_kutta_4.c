@@ -33,6 +33,7 @@ double fExternal(int i, int d, int step, double x[3][2][20], double m[3])
     return force;
 }
 
+
 //calculate the next step
 //double Next(int step):
 

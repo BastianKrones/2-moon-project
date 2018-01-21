@@ -1,8 +1,4 @@
 // The simulation main program
-
-#include <stdio.h>
-#include <stdlib.h>
-
 // #include "Runge_Kutta_4.h"
 #include "runge_kutta_4.h"
 
