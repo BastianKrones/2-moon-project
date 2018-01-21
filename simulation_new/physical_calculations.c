@@ -1,5 +1,5 @@
 //the force applied on the i-th body due to the j-th body at the d-th dimention
-#include "input_physical_data.h"
+#include "input_parameters.h"
 #include <math.h>
 double fInternal(int i, int j, int d, int step, double x[N][D][S], double m[N])
 {

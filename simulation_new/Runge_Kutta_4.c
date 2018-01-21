@@ -1,5 +1,6 @@
 // The definition of the Runge Kutta algorithm functions
 #include "physical_calculations.h"
+#include "Runge_Kutta_4.h"
 
 //rungekutta shit lol :) // x and v call by reference
 void Next(double h, int step, double t[S], double x[N][D][S], double v[N][D][S], double m)

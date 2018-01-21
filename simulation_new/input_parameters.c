@@ -1,4 +1,6 @@
 // Parameters of the simulation (t0 , tf , h, prec , ...)
+#include "input_parameters.h"
+
 // Starttime
 double t_0()
 {

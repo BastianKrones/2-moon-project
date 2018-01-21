@@ -3,7 +3,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "Runge_Kutta_4.h"
+// #include "Runge_Kutta_4.h"
+#include "input_parameters.h"
 #include "input_physical_data.h"
 
 
@@ -45,18 +46,18 @@ int main(void)
     //     }
     // }
 
-    int L = 1; //stepcounter
-    while (L < S)
-    {
-        L += 1;
-        for (int j = 1; j < N; j++)
-        {
-            for (int k = 1; k < D; k++)
-            {
-                Next(h, L, *t, *x, *v);
-            }
-        }
-    }
+    // int L = 1; //stepcounter
+    // while (L < S)
+    // {
+    //     L += 1;
+    //     for (int j = 1; j < N; j++)
+    //     {
+    //         for (int k = 1; k < D; k++)
+    //         {
+    //             Next(h, L, *t, *x, *v);
+    //         }
+    //     }
+    // }
 
     return 0;
 }

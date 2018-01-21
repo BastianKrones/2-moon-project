@@ -1,5 +1,6 @@
 // Physical data of the system ( masses and distances of the 3 bodies )
 #include "input_parameters.h"
+#include "input_physical_data.h"
 
 // Initialvelocities of all bodies
 double initial_velocities(int n, int d)
@@ -20,7 +21,7 @@ double initial_masses(int n)
 }
 
 // InitialIposition of all bodies (first entry = Saturn, second = moon 1, third = moon 2)
-double inital_pos(int b, int z)
+double initial_pos(int b, int z)
 {
 	const double initial_positions[N][D] = {{0, 0},
 											{1, 1},
