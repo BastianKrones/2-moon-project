@@ -6,5 +6,6 @@
         "input_physical_data.h": "c",
         "runge_kutta_4.h": "c"
     },
-    "C_Cpp.intelliSenseEngineFallback": "Disabled"
+    "C_Cpp.intelliSenseEngineFallback": "Disabled",
+    "cmake.sourceDirectory": "${workspaceRoot}/simulation/"
 }
