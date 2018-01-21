@@ -6,10 +6,11 @@
 // #include "Runge_Kutta_4.h"
 #include "Runge_Kutta_4.h"
 
+
 int main(void)
 {
     //define everything
-    double enrgy[S];
+    double energy[S];
     double x[N][D][S], v[N][D][S], a[N][D][S], t[S];
     double m[N];
 
@@ -25,16 +26,17 @@ int main(void)
         }
     }
 
-    [0] = calculate_(x, v, m, 0);
+    energy[0] = calculate_energy(x, v, m, 0);
 
 
     //calculate every f***ing step
     int L = 1; //stepcounter
     while (L < S)
-    {
+    {   
+        printf("%e", L/S);
         L += 1;
         Next(h(), L, &t, &x, &v, m);
-        [L + 1] = calculate_(x, v, m, L);
+        energy[L + 1] = calculate_energy(x, v, m, L);
     }
 
     return 0; //this ... is .... SPARTAAAAA!!!!!
