@@ -1,0 +1,1 @@
+void nprint(int M, int L);

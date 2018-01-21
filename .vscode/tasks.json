@@ -6,8 +6,8 @@
             "type": "shell",
             "command": "gcc",
             "args": [
-                "-g", "simulation_new/input_parameters.c simulation_new/input_physical_data.c simulation_new/input_physical_data.h simulation_new/Runge_Kutta_4.c simulation_new/EJS.c",
-                "-o", "simulation_new/EJS",
+                "-g", "simulation/input_parameters.c simulation/input_physical_data.c simulation/input_physical_data.h simulation/Runge_Kutta_4.c simulation/EJS.c",
+                "-o", "simulation/EJS",
                 "-lm"
             ],
             "group": {

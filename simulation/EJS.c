@@ -6,6 +6,7 @@
 // #include "Runge_Kutta_4.h"
 #include "Runge_Kutta_4.h"
 
+
 int main(void)
 {
     //define everything
@@ -31,7 +32,8 @@ int main(void)
     //calculate every f***ing step
     int L = 1; //stepcounter
     while (L < S)
-    {
+    {   
+        printf("%e", L/S);
         L += 1;
         Next(h(), L, &t, &x, &v, m);
         energy[L + 1] = calculate_energy(x, v, m, L);
