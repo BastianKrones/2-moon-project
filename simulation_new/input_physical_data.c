@@ -1,5 +1,4 @@
 // Physical data of the system ( masses and distances of the 3 bodies )
-#include "input_parameters.h"
 #include "input_physical_data.h"
 
 // Initialvelocities of all bodies
