@@ -2,6 +2,10 @@
     "version": "2.0.0",
     "tasks": [
         {
+            "type": "shell",
+            "command": "clear"
+        },
+        {
             "label": "build hello world",
             "type": "shell",
             "command": "gcc",
