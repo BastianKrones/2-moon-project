@@ -9,7 +9,7 @@
 #define t_0 0
 #define t_1 20
 #define prec 1
-#define S Size()
+#define S size()
 
-int Size();
+int size();
 double h();
