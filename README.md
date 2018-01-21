@@ -5,7 +5,7 @@
                          ██╔═══╝ ██║╚██╔╝██║██║   ██║██║   ██║██║╚██╗██║╚════██║╚════╝
                          ███████╗██║ ╚═╝ ██║╚██████╔╝╚██████╔╝██║ ╚████║███████║      
                          ╚══════╝╚═╝     ╚═╝ ╚═════╝  ╚═════╝ ╚═╝  ╚═══╝╚══════╝      
-                
+
                          ██████╗ ██████╗  ██████╗      ██╗███████╗ ██████╗████████╗   
                          ██╔══██╗██╔══██╗██╔═══██╗     ██║██╔════╝██╔════╝╚══██╔══╝   
                          ██████╔╝██████╔╝██║   ██║     ██║█████╗  ██║        ██║      
@@ -20,13 +20,15 @@
 2. Exercise 2 complete
 3. Simulation
     1. Next funtion implemented
+    2. Need to calculate the number of steps
 
 
 
 ### TODO-List
-1. Need to calculate the number of steps
 2. Energy Check
 3. Export data
 4. Programm Gnuplot
 5. Progress status for calculation
-6. PARTY!!!
+6. Write (Unit)-Tests
+7. Implement #ifndef to avoid multiple variable calls
+8. PARTY!!!
