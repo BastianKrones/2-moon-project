@@ -27,8 +27,8 @@
 ### TODO-List
 2. Energy Check
 3. Export data --> <span style="color:red">work in progress</span>
-4. Programm Gnuplot
-5. Progress status for calculation
+4. Programm Gnuplot 
+5. Progress status for calculation --> <span style="color:red">work in progress</span>
 6. Write (Unit)-Tests --> <span style="color:red">work in progress</span>
 7. Implement #ifndef to avoid multiple variable calls
 8. PARTY!!!
