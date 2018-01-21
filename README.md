@@ -33,4 +33,5 @@
 7. Implement #ifndef to avoid multiple variable calls
 8. Adjust the pow function so that there isin't a int as parameter
 9. fix calculate_energy 
-9. PARTY!!!
+10. fix reference in next
+11. PARTY!!!
