@@ -1,5 +1,4 @@
 // The simulation main program
-// #include "Runge_Kutta_4.h"
 #include "runge_kutta_4.h"
 
 void nprint(int M, int L)
@@ -48,7 +47,7 @@ void save_data_to_file(double x[N][D][S], double v[N][D][S], double t[S])
 };
 
 
-int main(void)
+int main(int argc, char* argv[])
 {
     //define everything
     double energy[S];
@@ -72,8 +71,7 @@ int main(void)
     int L = 0; //stepcounter
     while (L < (S-1) )
     {   
-        printf("ihihih %11f\n", x[2][0][0]);
-        Next(h(), L, &t, &x, &v, m);
+        Next(h(), L, t, x, v, m);
         L += 1;
         //nprint(S,L);
         // energy[L + 1] = calculate_energy(x, v, m, L);

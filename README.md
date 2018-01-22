@@ -34,4 +34,5 @@
 8. Adjust the pow function so that there isin't a int as parameter
 9. fix calculate_energy 
 10. fix reference in next
-11. PARTY!!!
+11. (optional) include .json parameters
+12. PARTY!!!

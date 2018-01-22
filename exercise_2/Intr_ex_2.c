@@ -6,7 +6,7 @@
 
 float f(float v,float x){
 	float w = 1; //short for alpha
-	return -w*x;
+	return -w*sin(x);
 }
 
 
@@ -18,8 +18,8 @@ int main(void){
 	float t_0 = 0;
 	float T = 10;
 
-	float x_0 = 0; //starting parameters
-	float v_0 = 1;
+	float x_0 = 3947879; //starting parameters
+	float v_0 = 1000000;
 
 	int steps = (T - t_0)/h; //Nuber of steps needed
 	double t[steps];
