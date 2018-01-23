@@ -11,23 +11,34 @@ double fInternal(int i, int j, int d, int step, double x[N][D][S], double m[N])
     else
     {
         //maybe add a negative sign
-        double rquar;
+        double rsqr;
         for (int b = 0; b < D; b++)
         {
-            rquar += pow(x[i][b][step] - x[j][b][step], 2);
+            // printf("b= %d\n", b);
+            rsqr += pow(x[i][b][step] - x[j][b][step], 2);
+            // printf("rquar %11f\n", rquar);
         }
-        return G * (m[i] * m[j]) / pow(rquar, 3.0 / 2) * (x[j][d][step] - x[i][d][step]);
+        return G * (m[i] * m[j]) / pow(rsqr, 3.0 / 2) * (x[j][d][step] - x[i][d][step]);
     }
 }
 
 //all the forces acting on the j-th body at the d-th dimention
 double fExternal(int i, int d, int step, double x[N][D][S], double m[N])
 {
-    //maybe change negative sign here too
-    double force = -G * (m[0] * m[i]) / pow(pow(x[i][0][step], 2) + pow(x[i][1][step], 2) , 3.0 / 2) * x[i][d][step];
 
+    double rsqr;
+    for (int b = 0; b < D; b++)
+    {
+        // printf("b= %d\n", b);
+        rsqr += pow(x[i][b][step], 2);
+        // printf("rquar %11f\n", rquar);
+    }
+    //maybe change negative sign here too
+    double force = -G * (m[0] * m[i]) / pow(rsqr , 3.0 / 2) * x[i][d][step];
+    // printf("force %11f\n", force);
     for (int j = 1; j < N; j++)
     {
+        // printf("fInternal %11f\n", fInternal(i, j, d, step, x, m));
         force += fInternal(i, j, d, step, x, m);
     }
     return force;
@@ -63,7 +74,8 @@ double fExternal(int i, int d, int step, double x[N][D][S], double m[N])
 //calculate accseleration acting on the i-th body
 double calculate_acceleration(int i, int d, int step, double x[N][D][S], double m[N])
 {
-    printf("%11f", fExternal(i, d, step, x, m));
+    // printf("%f\n", x[i][d][step]);
+    // printf("fExternal %11f\n", fExternal(i, d, step, x, m));
     return fExternal(i, d, step, x, m) / m[i];
 }
 
@@ -94,7 +106,7 @@ void Next(double h, int step, double t[S], double x[N][D][S], double v[N][D][S],
     {
         for (int j = 0; j < D; j++)
         {
-            printf("%11f\n", calculate_acceleration(i, j, step, xprime, m));
+            // printf("calculate acceleration %11f\n", calculate_acceleration(i, j, step, xprime, m));
             k[i][j][0] = h * vprime[i][j][step];
             w[i][j][0] = h * calculate_acceleration(i, j, step, xprime, m);
         }
@@ -105,8 +117,8 @@ void Next(double h, int step, double t[S], double x[N][D][S], double v[N][D][S],
     {
         for (int j = 0; j < D; j++)
         {
-            vprime[i][j][step] += w[i][j][0] / 2;
-            xprime[i][j][step] += k[i][j][0] / 2;
+            vprime[i][j][step] = v[i][j][step] + w[i][j][0] / 2;
+            xprime[i][j][step] = x[i][j][step] + k[i][j][0] / 2;
         }
     }
 
@@ -124,8 +136,8 @@ void Next(double h, int step, double t[S], double x[N][D][S], double v[N][D][S],
     {
         for (int j = 0; j < D; j++)
         {
-            vprime[i][j][step] += w[i][j][1] / 2;
-            xprime[i][j][step] += k[i][j][1] / 2;
+            vprime[i][j][step] = v[i][j][step] + w[i][j][1] / 2;
+            xprime[i][j][step] = x[i][j][step] + k[i][j][1] / 2;
         }
     }
 
@@ -143,8 +155,8 @@ void Next(double h, int step, double t[S], double x[N][D][S], double v[N][D][S],
     {
         for (int j = 0; j < D; j++)
         {
-            vprime[i][j][step] += w[i][j][2];
-            xprime[i][j][step] += k[i][j][2];
+            vprime[i][j][step] = v[i][j][step] + w[i][j][2];
+            xprime[i][j][step] = x[i][j][step] + k[i][j][2];
         }
     }
 
@@ -153,21 +165,33 @@ void Next(double h, int step, double t[S], double x[N][D][S], double v[N][D][S],
         for (int j = 0; j < D; j++)
         {
             w[i][j][3] = h * (vprime[i][j][step]);
+            printf("%f\n", xprime[i][j][step]);
             w[i][j][3] = h * calculate_acceleration(i, j, step, xprime, m);
+            //printf("%f\n", calculate_acceleration(i, j, step, xprime, m));
         }
     }
 
+    // for (int i=0; i < N; i++)
+    // {
+    //     for (int j=0; j < D; j++)
+    //     {
+    //         for (int k=0; k < 3; k++)
+    //         {
+    //             printf("%f\n", w[i][j][k]);
+    //         }
+    //     }
+    // }
+
+    
     //calculate the new variables
     for (int i = 0; i < N; i++)
     {
         for (int j = 0; j < D; j++)
         {
-            printf("llololo%11f\n", k[i][j][0]);
             x[i][j][step + 1] = x[i][j][step] + (k[i][j][0] / 6.0) + (k[i][j][1] / 3.0) + (k[i][j][2] / 3.0) + (k[i][j][3] / 6.0);
-            v[i][j][step + 1] = v[i][j][step] + w[i][j][0] / 6 + w[i][j][1] / 3 + w[i][j][2] / 3 + w[i][j][3] / 6;
+            v[i][j][step + 1] = v[i][j][step] + (w[i][j][0] / 6.0) + (w[i][j][1] / 3.0) + (w[i][j][2] / 3.0) + (w[i][j][3] / 6.0);
             t[step + 1] = t[step] + h;
         }
-    printf("\n");
     }
     return;
 }
