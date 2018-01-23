@@ -4,22 +4,24 @@
 #include <math.h>
 
 
-float f(float v,float x){
-	float w = 1; //short for alpha
+double f(double v,double x){
+	double w = 1; //short for alpha
 	return -w*x;
 }
 
 
 
 int main(void){
-	double h = 0.0000000005; //stepsize
+	double h = 0.005; //stepsize
 
 	//define the intervall
-	float t_0 = 0;
-	float T = 10;
+	double t_0 = 0;
+	double T = 10;
 
-	float x_0 = 0; //starting parameters
-	float v_0 = 1;
+	double x_0 = 0; //starting parameters
+	double v_0 = 1;
+	
+
 
 	int steps = (T - t_0)/h; //Nuber of steps needed
 	double t[steps];

@@ -3,6 +3,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#define INPUT_PARAMETERSN
+
 #define N 3
 #define D 2
 #define G (6.67408*pow(10, -11))
