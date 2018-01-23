@@ -46,7 +46,7 @@ short initial_masses_TEST()
 // 											{1, -1}};
 // 	return initial_positions[b][z];
 // }
-short initial_pos_TEST()
+short int initial_pos_TEST()
 {
     if (initial_pos(2, 1) == -1)
     {

@@ -8,7 +8,7 @@
 #define ANSI_COLOR_BOLD_GREEN   "\033[1m\033[32m"
 #define ANSI_COLOR_WHITE        "\x1b[0;37m"
 
-void print_test(char [], short);
+void print_test(char [], short int);
 
 void main()
 {
@@ -18,7 +18,7 @@ void main()
     printf("#                   #\n");
     printf("#####################\n\n");
     print_test("h", h_TEST());
-    print_test("size", h_TEST());
+    print_test("size", size_TEST());
     print_test("initial_velocities", initial_velocities_TEST());
     print_test("initial_masses", initial_masses_TEST());
     print_test("initial_pos", initial_pos_TEST());
