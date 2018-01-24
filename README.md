@@ -36,3 +36,36 @@
 10. fix reference in next
 11. (optional) include .json parameters
 12. PARTY!!!
+
+
+# Unit-Testing with `Minunit`
+For more defails see https://github.com/siu/minunit
+1. Write your test in `test.c`
+ 
+```c
+#include "../minunit.h"
+
+MU_TEST(test_check) {
+	mu_check(5 == 7);
+}
+MU_TEST_SUITE(test_suite) {
+	MU_RUN_TEST(test_check);
+}
+
+int main(int argc, char *argv[]) {
+	MU_RUN_SUITE(test_suite);
+	MU_REPORT();
+	return 0;
+}
+```
+
+2. Compile your test-file `test.c` 
+
+```
+gcc test.c -lrt -lm
+```
+3. Run the executable 
+```
+./path/to/executable/a.out
+```
+4. Watch output
