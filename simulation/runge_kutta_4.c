@@ -74,7 +74,8 @@ double fExternal(int i, int d, int step, double x[N][D][S], double m[N])
 //calculate accseleration acting on the i-th body
 double calculate_acceleration(int i, int d, int step, double x[N][D][S], double m[N])
 {
-    // printf("%f\n", x[i][d][step]);
+    printf("u I %3d %3d %3d", i, d, step);
+    printf("u%f\n", x[i][d][step]);
     // printf("fExternal %11f\n", fExternal(i, d, step, x, m));
     return fExternal(i, d, step, x, m) / m[i];
 }
@@ -93,7 +94,7 @@ void Next(double h, int step, double t[S], double x[N][D][S], double v[N][D][S],
     {
         for (int j = 0; j < D; j++)
         {
-            for (int k = 0; k < S; k++)
+            for (int k = 0; k < step; k++)
             {
                 vprime[i][j][k] = v[i][j][k];
                 xprime[i][j][k] = x[i][j][k];
@@ -117,8 +118,8 @@ void Next(double h, int step, double t[S], double x[N][D][S], double v[N][D][S],
     {
         for (int j = 0; j < D; j++)
         {
-            vprime[i][j][step] = v[i][j][step] + w[i][j][0] / 2;
-            xprime[i][j][step] = x[i][j][step] + k[i][j][0] / 2;
+            vprime[i][j][step] = v[i][j][step] + w[i][j][0] / 2.0;
+            xprime[i][j][step] = x[i][j][step] + k[i][j][0] / 2.0;
         }
     }
 
@@ -136,8 +137,8 @@ void Next(double h, int step, double t[S], double x[N][D][S], double v[N][D][S],
     {
         for (int j = 0; j < D; j++)
         {
-            vprime[i][j][step] = v[i][j][step] + w[i][j][1] / 2;
-            xprime[i][j][step] = x[i][j][step] + k[i][j][1] / 2;
+            vprime[i][j][step] = v[i][j][step] + w[i][j][1] / 2.0;
+            xprime[i][j][step] = x[i][j][step] + k[i][j][1] / 2.0;
         }
     }
 
@@ -165,7 +166,8 @@ void Next(double h, int step, double t[S], double x[N][D][S], double v[N][D][S],
         for (int j = 0; j < D; j++)
         {
             w[i][j][3] = h * (vprime[i][j][step]);
-            printf("%f\n", xprime[i][j][step]);
+            printf("i I %3d %3d %3d", i, j, step);
+            printf(" X %f\n", xprime[i][j][step]);
             w[i][j][3] = h * calculate_acceleration(i, j, step, xprime, m);
             //printf("%f\n", calculate_acceleration(i, j, step, xprime, m));
         }
