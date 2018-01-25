@@ -6,8 +6,9 @@
             "type": "shell",
             "command": "gcc",
             "args": [
-                "-g", "simulation/input_parameters.c simulation/input_physical_data.c simulation/test/input_parameters_TEST.c simulation/test/input_physical_data_TEST.c simulation/test/main_TEST.c",
-                "-o", "simulation/test/test_ejs",
+                "-g", "simulation/input_parameters.c simulation/input_physical_data.c simulation/test/test.c",
+                "-o", "simulation/test/test",
+                "-lrt",
                 "-lm"
             ],
             "group": {
