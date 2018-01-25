@@ -12,8 +12,11 @@
 #define t_1 20
 #define prec 1
 
-double h = 0.05;
+
+extern double h;
+
 
 double initial_velocities(int n, int d);
 double initial_masses(int n);
 double initial_pos(int b, int z);
+

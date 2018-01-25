@@ -27,3 +27,6 @@ double initial_pos(int b, int z)
 											{4567843432, -467456634}};
 	return initial_positions[b][z];
 }
+
+
+double h = 0.05;

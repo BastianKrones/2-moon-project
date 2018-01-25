@@ -21,7 +21,7 @@
             "type": "shell",
             "command": "gcc",
             "args": [
-                "-g", "simulation/input_parameters.c simulation/ejs.c",
+                "-g", "simulation/input_parameters.c simulation/utilities.c simulation/ejs.c",
                 "-o", "simulation/ejs",
                 "-lm"
             ],
