@@ -38,6 +38,12 @@
 12. PARTY!!!
 
 
+## Arguments
+
+| argument      | meaning                   |
+|---------------|:-------------------------:|
+| -h            | set initial steplenght    |
+
 # Unit-Testing with `Minunit`
 For more defails see https://github.com/siu/minunit
 1. Write your test in `test.c`
