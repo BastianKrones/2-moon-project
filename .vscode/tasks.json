@@ -2,46 +2,27 @@
   "version": "2.0.0",
   "tasks": [
     {
+      "label": "RUN TEST SIMULATION",
+      "dependsOn": "[TEST] SIMULATION",
+      "type": "shell",
+      "options": {
+        "cwd": "${workspaceFolder}/simulation/test"
+      },
+      "command": "./test",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": []
+    },
+    {
       "label": "[TEST] SIMULATION",
       "type": "shell",
       "options": {
         "cwd": "${workspaceFolder}/simulation"
       },
       "command": "gcc -g input_parameters.c cmd_args.c test/test.c -o test/test -lrt -lm",
-      "group": {
-        "kind": "build",
-        "isDefault": true
-      },
       "problemMatcher": []
-    },
-    {
-      "label": "build project",
-      "type": "shell",
-      "options": {
-        "cwd": "${workspaceFolder}/simulation"
-      },
-      "command": "gcc -g input_parameters.c cmd_args.c ejs.c -o ejs -lm",
-      "group": {
-        "kind": "build",
-        "isDefault": true
-      },
-      "problemMatcher": []
-    },
-    {
-      "label": "build exercise 1",
-      "type": "shell",
-      "command": "gcc",
-      "args": [
-        "-g",
-        "exercise_1/Intr_ex_1.c",
-        "-o",
-        "exercise_1/Intr_ex_1",
-        "-lm"
-      ],
-      "group": {
-        "kind": "build",
-        "isDefault": true
-      }
     },
     {
       "label": "PLOT EX1",
