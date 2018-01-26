@@ -1,8 +1,9 @@
-// Parameters of the simulation (t0 , tf , h, prec , ...)
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
 
+//###########################################
+#ifndef INPUT_PARAMETERSN
 #define INPUT_PARAMETERSN
 
 #define N 3
@@ -20,3 +21,4 @@ double initial_velocities(int n, int d);
 double initial_masses(int n);
 double initial_pos(int b, int z);
 
+#endif
