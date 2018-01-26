@@ -1,34 +1,142 @@
 {
-    "version": "2.0.0",
-    "tasks": [
-        {
-            "label": "test project",
-            "type": "shell",
-            "command": "gcc",
-            "args": [
-                "-g", "simulation/input_parameters.c simulation/input_physical_data.c simulation/test/test.c",
-                "-o", "simulation/test/test",
-                "-lrt",
-                "-lm"
-            ],
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            }
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "test project",
+      "type": "shell",
+      "command": "gcc",
+      "args": [
+        "-g",
+        "simulation/input_parameters.c simulation/input_physical_data.c simulation/test/test.c",
+        "-o",
+        "simulation/test/test",
+        "-lrt",
+        "-lm"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    },
+    {
+      "label": "build project",
+      "type": "shell",
+      "command": "gcc",
+      "args": [
+        "-g",
+        "simulation/input_parameters.c simulation/input_physical_data.c simulation/runge_kutta_4.c simulation/ejs.c",
+        "-o",
+        "simulation/ejs",
+        "-lm"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    },
+    {
+      "label": "build exercise 1",
+      "type": "shell",
+      "command": "gcc",
+      "args": [
+        "-g",
+        "exercise_1/Intr_ex_1.c",
+        "-o",
+        "exercise_1/Intr_ex_1",
+        "-lm"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    },
+    //
+    // Exercise 1
+    //
+    {
+      "label": "[PLOTTING] EX1",
+      "type": "shell",
+      "options": {
+        "cwd": "${workspaceFolder}/exercise_1"
+      },
+      "command": "gnuplot ./ex1_plot.gnu",
+      "dependsOn": ["[PATHING] EX1"],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "[PATHING] EX1",
+      "type": "shell",
+      "command": "cd ./exercise_1",
+      "dependsOn": ["[REMOVING] EX1"],
+      "problemMatcher": []
+    },
+    {
+      "label": "[REMOVING] EX1",
+      "type": "shell",
+      "command": "rm ./exercise_1/Intr_ex_1",
+      "dependsOn": ["[EXECUTE] EX1"],
+      "problemMatcher": []
+    },
+    {
+      "label": "[EXECUTE] EX1",
+      "type": "shell",
+      "command": "./exercise_1/Intr_ex_1",
+      "dependsOn": ["[COMPILE] EX1"],
+      "problemMatcher": []
+    },
+    {
+      "label": "[COMPILE] EX1",
+      "type": "shell",
+      "command": "gcc -g ./exercise_1/Intr_ex_1.c -o ./exercise_1/Intr_ex_1",
+      "problemMatcher": []
+    },
+    //
+    // Exercise 2
+    //
+    {
+        "label": "[PLOTTING] EX2",
+        "type": "shell",
+        "options": {
+          "cwd": "${workspaceFolder}/exercise_1"
         },
-        {
-            "label": "build project",
-            "type": "shell",
-            "command": "gcc",
-            "args": [
-                "-g", "simulation/input_parameters.c simulation/input_physical_data.c simulation/runge_kutta_4.c simulation/ejs.c",
-                "-o", "simulation/ejs",
-                "-lm"
-            ],
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            }
-        }
-    ]
+        "command": "gnuplot ./EX2_plot.gnu",
+        "dependsOn": ["[PATHING] EX2"],
+        "group": {
+          "kind": "build",
+          "isDefault": true
+        },
+        "problemMatcher": []
+      },
+      {
+        "label": "[PATHING] EX2",
+        "type": "shell",
+        "command": "cd ./exercise_1",
+        "dependsOn": ["[REMOVING] EX2"],
+        "problemMatcher": []
+      },
+      {
+        "label": "[REMOVING] EX2",
+        "type": "shell",
+        "command": "rm ./exercise_1/Intr_ex_2",
+        "dependsOn": ["[EXECUTE] EX2"],
+        "problemMatcher": []
+      },
+      {
+        "label": "[EXECUTE] EX2",
+        "type": "shell",
+        "command": "./exercise_1/Intr_ex_2",
+        "dependsOn": ["[COMPILE] EX2"],
+        "problemMatcher": []
+      },
+      {
+        "label": "[COMPILE] EX2",
+        "type": "shell",
+        "command": "gcc -g ./exercise_1/Intr_ex_2.c -o ./exercise_1/Intr_ex_2",
+        "problemMatcher": []
+      }
+  ]
 }

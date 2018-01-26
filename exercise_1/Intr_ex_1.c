@@ -3,9 +3,10 @@
 #include <stdlib.h>
 #include <math.h>
 
-int main(void){		
+int main(void)
+{
 	float h = 0.01; //stepsize
-	float a = 1; //short for alpha
+	float a = 1;	//short for alpha
 
 	//define the intervall
 	float t_0 = 0;
@@ -30,11 +31,12 @@ int main(void){
 
 	FILE *fp;
 
-	fp = fopen("./data.txt", "w");
+	fp = fopen("./exercise_1/data.txt", "w");
 
 	for (int i = 0; i <= (steps - 1); i++)
 	{
 		fprintf(fp, "%f %11f \n", t[i], x[i]);
+		// fprintf(fp, "%f %11f \n", 1.0, 1.0);
 	}
 
 	fclose(fp);

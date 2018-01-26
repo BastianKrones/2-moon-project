@@ -2,6 +2,8 @@
 #include "input_parameters.h"
 
 
+h_2 = 0.5
+
 double h()
 {
     double h = 0.5;
