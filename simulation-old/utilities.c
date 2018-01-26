@@ -1,5 +1,5 @@
 // Definition of additional functions
-#include "utilities.h"
+#include "cmd_args.h"
 #include <stdio.h>
 #include <stdlib.h>
 
