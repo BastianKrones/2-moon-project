@@ -21,38 +21,59 @@
     {
       "label": "build project",
       "type": "shell",
-      "command": "gcc",
-      "args": [
-        "-g",
-        "simulation/input_parameters.c simulation/input_physical_data.c simulation/runge_kutta_4.c simulation/ejs.c",
-        "-o",
-        "simulation/ejs",
-        "-lm"
-      ],
+      "options": {
+        "cwd": "${workspaceFolder}/simulation"
+      },
+      "command": "gcc -g input_parameters.c ./input_physical_data.c runge_kutta_4.c ejs.c -o ejs -lm",
       "group": {
         "kind": "build",
         "isDefault": true
-      }
+      },
+      "problemMatcher": []
     },
     {
-      "label": "build exercise 1",
+      "label": "[PLOTTING] SIMULATION",
       "type": "shell",
-      "command": "gcc",
-      "args": [
-        "-g",
-        "exercise_1/Intr_ex_1.c",
-        "-o",
-        "exercise_1/Intr_ex_1",
-        "-lm"
+      "options": {
+        "cwd": "${workspaceFolder}/simulation"
+      },
+      "command": "",
+      "dependsOn": [
+        "[REMOVING] SIMULATION"
       ],
       "group": {
         "kind": "build",
         "isDefault": true
-      }
+      },
+      "problemMatcher": []
     },
-    //
-    // Exercise 1
-    //
+    {
+      "label": "[REMOVING] SIMULATION",
+      "type": "shell",
+      "command": "rm ./simulation/ejs",
+      "dependsOn": [
+        "[EXECUTE] SIMULATION"
+      ],
+      "problemMatcher": []
+    },
+    {
+      "label": "[EXECUTE] SIMULATION",
+      "type": "shell",
+      "command": "./exercise_1/Intr_ex_1",
+      "dependsOn": [
+        "[COMPILE] SIMULATION"
+      ],
+      "problemMatcher": []
+    },
+    {
+      "label": "[COMPILE] SIMULATION",
+      "type": "shell",
+      "options": {
+        "cwd": "${workspaceFolder}/simulation"
+      },
+      "command": "gcc -g ./Intr_ex_1.c -o ./Intr_ex_1",
+      "problemMatcher": []
+    },
     {
       "label": "[PLOTTING] EX1",
       "type": "shell",
@@ -60,7 +81,9 @@
         "cwd": "${workspaceFolder}/exercise_1"
       },
       "command": "gnuplot ./ex1_plot.gnu",
-      "dependsOn": ["[PATHING] EX1"],
+      "dependsOn": [
+        "[REMOVING] EX1"
+      ],
       "group": {
         "kind": "build",
         "isDefault": true
@@ -68,24 +91,21 @@
       "problemMatcher": []
     },
     {
-      "label": "[PATHING] EX1",
-      "type": "shell",
-      "command": "cd ./exercise_1",
-      "dependsOn": ["[REMOVING] EX1"],
-      "problemMatcher": []
-    },
-    {
       "label": "[REMOVING] EX1",
       "type": "shell",
       "command": "rm ./exercise_1/Intr_ex_1",
-      "dependsOn": ["[EXECUTE] EX1"],
+      "dependsOn": [
+        "[EXECUTE] EX1"
+      ],
       "problemMatcher": []
     },
     {
       "label": "[EXECUTE] EX1",
       "type": "shell",
       "command": "./exercise_1/Intr_ex_1",
-      "dependsOn": ["[COMPILE] EX1"],
+      "dependsOn": [
+        "[COMPILE] EX1"
+      ],
       "problemMatcher": []
     },
     {
@@ -94,49 +114,45 @@
       "command": "gcc -g ./exercise_1/Intr_ex_1.c -o ./exercise_1/Intr_ex_1",
       "problemMatcher": []
     },
-    //
-    // Exercise 2
-    //
     {
-        "label": "[PLOTTING] EX2",
-        "type": "shell",
-        "options": {
-          "cwd": "${workspaceFolder}/exercise_1"
-        },
-        "command": "gnuplot ./EX2_plot.gnu",
-        "dependsOn": ["[PATHING] EX2"],
-        "group": {
-          "kind": "build",
-          "isDefault": true
-        },
-        "problemMatcher": []
+      "label": "[PLOTTING] EX2",
+      "type": "shell",
+      "options": {
+        "cwd": "${workspaceFolder}/exercise_2"
       },
-      {
-        "label": "[PATHING] EX2",
-        "type": "shell",
-        "command": "cd ./exercise_1",
-        "dependsOn": ["[REMOVING] EX2"],
-        "problemMatcher": []
+      "command": "gnuplot ./ex2_plot.gnu",
+      "dependsOn": [
+        "[REMOVING] EX2"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
       },
-      {
-        "label": "[REMOVING] EX2",
-        "type": "shell",
-        "command": "rm ./exercise_1/Intr_ex_2",
-        "dependsOn": ["[EXECUTE] EX2"],
-        "problemMatcher": []
-      },
-      {
-        "label": "[EXECUTE] EX2",
-        "type": "shell",
-        "command": "./exercise_1/Intr_ex_2",
-        "dependsOn": ["[COMPILE] EX2"],
-        "problemMatcher": []
-      },
-      {
-        "label": "[COMPILE] EX2",
-        "type": "shell",
-        "command": "gcc -g ./exercise_1/Intr_ex_2.c -o ./exercise_1/Intr_ex_2",
-        "problemMatcher": []
-      }
+      "problemMatcher": []
+    },
+    {
+      "label": "[REMOVING] EX2",
+      "type": "shell",
+      "command": "rm ./exercise_2/Intr_ex_2",
+      "dependsOn": [
+        "[EXECUTE] EX2"
+      ],
+      "problemMatcher": []
+    },
+    {
+      "label": "[EXECUTE] EX2",
+      "type": "shell",
+      "command": "./exercise_2/Intr_ex_2",
+      "dependsOn": [
+        "[COMPILE] EX2"
+      ],
+      "problemMatcher": []
+    },
+    {
+      "label": "[COMPILE] EX2",
+      "type": "shell",
+      "command": "gcc -g ./exercise_2/Intr_ex_2.c -o ./exercise_2/Intr_ex_2",
+      "problemMatcher": []
+    }
   ]
 }
