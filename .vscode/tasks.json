@@ -24,7 +24,7 @@
       "options": {
         "cwd": "${workspaceFolder}/simulation"
       },
-      "command": "gcc -g input_parameters.c ./input_physical_data.c runge_kutta_4.c ejs.c -o ejs -lm",
+      "command": "gcc -g input_parameters.c cmd_args.c ejs.c -o ejs -lm",
       "group": {
         "kind": "build",
         "isDefault": true
