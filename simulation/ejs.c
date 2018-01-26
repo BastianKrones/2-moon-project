@@ -1,4 +1,5 @@
 #include "cmd_args.h"
+#include "input_parameters.h"
 
 
 int main(int argc, char* argv[])
