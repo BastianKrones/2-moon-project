@@ -22,7 +22,10 @@
     {
       "label": "build project",
       "type": "shell",
-      "command": "gcc -g simulation/input_parameters.c simulation/input_physical_data.c simulation/runge_kutta_4.c simulation/ejs.c -o simulation/ejs -lm",
+      "options": {
+        "cwd": "${workspaceFolder}/simulation"
+      },
+      "command": "gcc -g input_parameters.c cmd_args.c ejs.c -o ejs -lm",
       "group": {
         "kind": "build",
         "isDefault": true
