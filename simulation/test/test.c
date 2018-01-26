@@ -27,7 +27,12 @@ MU_TEST_SUITE(input_parameters_suite) {
 	MU_RUN_TEST(initial_pos_check);
 }
 
-
+//
+// cmd_args.c
+//
+// MU_TEST(process_cmd_args()){
+// 	mu_check(process_cmd_args(1, {"-h"}))
+// }
 
 int main(int argc, char *argv[]) {
 	MU_RUN_SUITE(input_parameters_suite);
