@@ -2,17 +2,12 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "SIMULATION",
+      "label": "[TEST] SIMULATION",
       "type": "shell",
-      "command": "gcc",
-      "args": [
-        "-g",
-        "simulation/input_parameters.c simulation/input_physical_data.c simulation/test/test.c",
-        "-o",
-        "simulation/test/test",
-        "-lrt",
-        "-lm"
-      ],
+      "options": {
+        "cwd": "${workspaceFolder}/simulation"
+      },
+      "command": "gcc -g input_parameters.c cmd_args.c test/test.c -o test/test -lrt -lm",
       "group": {
         "kind": "build",
         "isDefault": true
