@@ -1,6 +1,5 @@
 #include "minunit.h"
 #include "../input_parameters.h"
-#include "../input_physical_data.h"
 
 //
 // input parameters tests
