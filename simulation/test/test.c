@@ -1,5 +1,4 @@
 #include "minunit.h"
-#include "../input_parameters.h"
 #include "../cmd_args.h"
 
 //
