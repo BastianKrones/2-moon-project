@@ -16,7 +16,8 @@
       "group": {
         "kind": "build",
         "isDefault": true
-      }
+      },
+      "problemMatcher": []
     },
     {
       "label": "build project",
@@ -44,9 +45,6 @@
         "isDefault": true
       }
     },
-    //
-    // EX1
-    //
     {
       "label": "PLOT EX1",
       "dependsOn": "[PLOT] EX1",
@@ -80,10 +78,6 @@
       "type": "shell",
       "command": "rm ./exercise_1/Intr_ex_1",
       "dependsOn": "[EXECUTE] EX1",
-      "group": {
-        "kind": "build",
-        "isDefault": true
-      },
       "problemMatcher": []
     },
     {
@@ -99,9 +93,6 @@
       "command": "gcc -g ./exercise_1/Intr_ex_1.c -o ./exercise_1/Intr_ex_1",
       "problemMatcher": []
     },
-    //
-    // EX2
-    //
     {
       "label": "PLOT EX2",
       "dependsOn": "[PLOT] EX2",
