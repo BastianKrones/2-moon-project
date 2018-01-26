@@ -1,4 +1,4 @@
-#include "utilities.h"
+#include "cmd_args.h"
 
 void process_cmd_args(int argc, char* argv[])
 {
@@ -7,7 +7,7 @@ void process_cmd_args(int argc, char* argv[])
         if (strcmp(argv[i],"-h") == 0)
         {
             printf("Input initial steplenght: ");
-            scanf("%d", &h);
+            scanf("%lf", &h);
         }
         else
         {
