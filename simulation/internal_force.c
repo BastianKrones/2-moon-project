@@ -23,8 +23,6 @@ double fInternal(int i, int j, int d, double x[N][D], double m[N])
 
         double force = -1 * G * m[i] * m[j] / pow(distance, 3.0/2.0) * (x[i][d] - x[j][d]);
 
-        // printf("force = %.20f\n", force);
-
         return force;
 
     }
