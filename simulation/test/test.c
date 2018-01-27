@@ -82,6 +82,30 @@ MU_TEST_SUITE(external_force_suite) {
 	MU_RUN_TEST(fExternal_check);
 }
 
+// 
+// acceleration
+//
+
+MU_TEST(calculate_acceleration_check) {
+
+	//expectet value
+	double should = 9.011933036 * pow(10, -14);
+
+	// allowed error for float
+	double eps = 0.000000000000000001;
+
+	// masses and positions for the system
+	double m[] = {54278, 1241, 1252};
+	double x[3][2] = {{0, 0}, {6319, 653}, {4567, -4674}};
+
+	mu_check(fabs(calculate_acceleration(1, 0, x, m) - should) <= eps);
+	mu_check(calculate_acceleration(0, 1, x, m) == 0);
+}
+
+MU_TEST_SUITE(acceleration_suite) {
+	MU_RUN_TEST(calculate_acceleration_check);
+}
+
 int main(int argc, char *argv[]) {
 	MU_RUN_SUITE(input_parameters_suite);
 	MU_RUN_SUITE(internal_force_suite);
