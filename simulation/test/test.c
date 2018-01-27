@@ -86,7 +86,6 @@ MU_TEST_SUITE(external_force_suite) {
 // 
 // acceleration
 //
-
 MU_TEST(calculate_acceleration_check) {
 
 	//expectet value
