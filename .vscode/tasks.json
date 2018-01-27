@@ -7,7 +7,7 @@
       "options": {
         "cwd": "${workspaceFolder}/simulation"
       },
-      "command": "gcc -g input_parameters.c internal_force.c test/test.c -o test/test -lrt -lm",
+      "command": "gcc -g input_parameters.c internal_force.c external_force.c test/test.c -o test/test -lrt -lm",
       "group": {
         "kind": "build",
         "isDefault": true
