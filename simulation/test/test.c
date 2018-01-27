@@ -6,6 +6,7 @@
 #include "../internal_force.h"
 #include "../external_force.h"
 #include "../acceleration.h"
+#include "../next_copy.h"
 
 //
 // input parameters tests
@@ -63,7 +64,6 @@ MU_TEST_SUITE(internal_force_suite) {
 // external force
 //
 MU_TEST(fExternal_check) {
-	// ONLY WORKS FOR D = 2 AND N > 3
 
 	// expectet value
 	double should = -1 * 1.11838089 * pow(10, -10);
@@ -106,11 +106,54 @@ MU_TEST_SUITE(acceleration_suite) {
 	MU_RUN_TEST(calculate_acceleration_check);
 }
 
+//
+// next_copy
+//
+MU_TEST(adv_copy_check) {
+	double xprime[3][2];
+	double vprime[3][2];
+
+	//allowed float error
+	double eps = 0.000000000000000001;
+
+	// masses, position and speeds for the Test system
+	double x[3][2] = {{0, 0}, {6319, 653}, {4567, -4674}};
+	double v[3][2] = {{0, 0}, {325634, -23630}, {15324, -36234}};
+	double k[3][2][4] = {{{2,4,6,3},{3.5,7.3,3.5,7.4}},{{4.7,3.8,5.87,3.7},{7.3,5.7,2.5,7.8}},{{6.3,5.9,2.6,8.9},{44.7,3.9,5.9,3.6}}};
+	double w[3][2][4] = {{{3.7,4.7,5.9,5.7},{4.7,3.5,8.9,5.4}},{{4.6,77.9,4.4,3.7},{4.6,7.4,5.6,7.9}},{{2.6,7.8,95.34,5.5},{2.5,3.6,4.2,4.7}}};
+
+	//mode 0
+	adv_copy(vprime,  xprime,  v,  x, 0,  w,  k);
+	for (int i; i < N; i++)
+	{
+		mu_check(xprime[i][0] == x[i][0]);
+		mu_check(vprime[i][0] == v[i][0]);
+	}
+
+	//mode 
+	adv_copy(vprime,  xprime,  v,  x, 1,  w,  k);
+	mu_check(fabs(xprime[1][0] - 6320.9) <= eps);
+
+}
+
+MU_TEST_SUITE(next_copy_suite) {
+	MU_RUN_TEST(adv_copy_check);
+}
+
 int main(int argc, char *argv[]) {
+	// ONLY WORKS FOR D = 2 AND N > 3
+	if (D == 2 && N >= 3) 
+	{
 	MU_RUN_SUITE(input_parameters_suite);
 	MU_RUN_SUITE(internal_force_suite);
 	MU_RUN_SUITE(external_force_suite);
 	MU_RUN_SUITE(acceleration_suite);
+	MU_RUN_SUITE(next_copy_suite);
 	MU_REPORT();
+	}
+	else
+	{
+		printf("ERROR: tests work only for D = 2 and N >= 3");
+	}
 	return 0;
 }
