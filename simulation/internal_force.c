@@ -16,14 +16,13 @@ double fInternal(int i, int j, int d, double x[N][D], double m[N])
     else
     {
         double distance = 0;
-        for (int k = 0 ; k < D ; k++)
+        for (int k = 0; k < D; k++)
         {
-            distance += pow( x[i][k] - x[j][k], 2);
+            distance += pow(x[i][k] - x[j][k], 2);
         }
 
-        double force = -1 * G * m[i] * m[j] / pow(distance, 3.0/2.0) * (x[i][d] - x[j][d]);
+        double force = -1 * G * m[i] * m[j] / pow(distance, 3.0 / 2.0) * (x[i][d] - x[j][d]);
 
         return force;
-
     }
 }

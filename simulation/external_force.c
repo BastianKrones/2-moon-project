@@ -4,7 +4,7 @@
 double fExternal(int i, int d, double x[N][D], double m[N])
 {
     double force = 0;
-    for (int j = 0; j < N ; j++)
+    for (int j = 0; j < N; j++)
     {
         force += fInternal(i, j, d, x, m);
     }
