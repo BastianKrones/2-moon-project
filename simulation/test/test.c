@@ -1,5 +1,10 @@
 #include "minunit.h"
-#include "../cmd_args.h"
+#include "stdlib.h"
+#include "stdio.h"
+
+#include "../input_parameters.h"
+#include "../internal_force.h"
+#include "../external_force.h"
 
 //
 // input parameters tests
@@ -27,10 +32,60 @@ MU_TEST_SUITE(input_parameters_suite) {
 	MU_RUN_TEST(initial_pos_check);
 }
 
+//
+// internal_force
+//
+MU_TEST(fInternal_check) {
+	// ONLY WORKS FOR D = 2 AND N > 3
 
+	// expectet value
+	double should = -1 * 1.030254536 * pow(10, -12);
+
+	// allowed error for float
+	double eps = 0.000000000001;
+
+	// masses and positions for the system
+	double m[] = {54278, 1241, 1252};
+	double x[3][2] = {{0, 0}, {6319, 653}, {4567, -4674}};
+
+
+	mu_check(fabs(fInternal(1, 2, 0, x, m) - should) <= eps);
+	mu_check(fInternal(1, 1, 0, x, m) == 0);
+	mu_check(fInternal(0, 2, 0, x, m) == 0);
+}
+
+MU_TEST_SUITE(internal_force_suite) {
+	MU_RUN_TEST(fInternal_check);
+}
+
+//
+// external force
+//
+MU_TEST(fExternal_check) {
+	// ONLY WORKS FOR D = 2 AND N > 3
+
+	// expectet value
+	double should = -1 * 6.097024 * pow(10, -11);
+
+	// allowed error for float
+	double eps = 0.000000000001;
+
+	// masses and positions for the system
+	double m[] = {54278, 1241, 1252};
+	double x[3][2] = {{0, 0}, {6319, 653}, {4567, -4674}};
+
+	mu_check(fabs(fExternal(1, 0, x, m) - should) <= eps);
+	mu_check(fExternal(0, 1, x, m) == 0);
+}
+
+MU_TEST_SUITE(external_force_suite) {
+	MU_RUN_TEST(fExternal_check);
+}
 
 int main(int argc, char *argv[]) {
 	MU_RUN_SUITE(input_parameters_suite);
+	MU_RUN_SUITE(internal_force_suite);
+	MU_RUN_SUITE(external_force_suite);
 	MU_REPORT();
 	return 0;
 }
