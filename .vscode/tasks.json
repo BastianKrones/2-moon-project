@@ -45,7 +45,7 @@
         "cwd": "${workspaceFolder}/simulation"
       },
       "command":
-        "gcc -g input_parameters.c internal_force.c external_force.c test/test.c -o test/test -lrt -lm",
+        "gcc -g input_parameters.c internal_force.c external_force.c initialize.c test/test.c -o test/test -lrt -lm",
       "dependsOn": "[EXECUTE] SIMULATION",
       "problemMatcher": [],
       "presentation": {
@@ -71,7 +71,7 @@
       "options": {
         "cwd": "${workspaceFolder}/simulation"
       },
-      "command": "gcc -g input_parameters.c cmd_args.c ejs.c -o ejs -lm",
+      "command": "gcc -g input_parameters.c internal_force.c external_force.c initialize.c -o test/test -lm",
       "problemMatcher": [],
       "dependsOn": "CLEAN",
       "presentation": {
