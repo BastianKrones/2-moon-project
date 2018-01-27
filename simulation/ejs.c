@@ -4,7 +4,7 @@
 #include "utilities.h"
 #include "energy.h"
 
-int main(int argc, char* argv[])
+int main(int argc, char *argv[])
 {
     process_cmd_args(argc, argv);
 
@@ -16,12 +16,10 @@ int main(int argc, char* argv[])
 
     initialize(energy, t, x, v, m);
 
-    //to be iterated late on for each step/time  
+    //to be iterated late on for each step/time
     save_data_to_file(t, x, v);
 
     calculate_kin_energy(1, v, m);
 
     return 0; //this ... is .... SPARTAAAAA!!!!!
 }
-
-

@@ -1,7 +1,6 @@
 #include "external_force.h"
 #include "input_parameters.h"
 
-
 #ifndef ACCELERATIONN
 #define ACCELERATIONN
 

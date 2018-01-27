@@ -7,6 +7,6 @@
 #ifndef CMD_ARGSN
 #define CMD_ARGSN
 
-void process_cmd_args(int argc, char* argv[]);
+void process_cmd_args(int argc, char *argv[]);
 
 #endif
