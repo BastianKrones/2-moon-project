@@ -12,9 +12,7 @@
       },
       "problemMatcher": [],
       "presentation": {
-        "echo": false,
-        "reveal": "silent",
-        "focus": false
+        "echo": false
       }
     },
     {
@@ -24,11 +22,8 @@
       "dependsOn": "[RUN TEST] SIMULATION",
       "problemMatcher": [],
       "presentation": {
-        "echo": false,
-        "reveal": "never",
-        "focus": false
+        "echo": false
       },
-      "isBackground": true
     },
     {
       "label": "[RUN TEST] SIMULATION",
@@ -37,13 +32,10 @@
       "options": {
         "cwd": "${workspaceFolder}/simulation/test"
       },
-      "command": "./test",
       "presentation": {
-        "panel": "dedicated",
-        "echo": false,
-        "reveal": "always",
-        "focus": true
+        "echo": true,
       },
+      "command": "./test",
       "problemMatcher": []
     },
     {
@@ -57,10 +49,8 @@
       "dependsOn": "[EXECUTE] SIMULATION",
       "problemMatcher": [],
       "presentation": {
-        "echo": false,
-        "reveal": "never"
-      },
-      "isBackground": true
+        "echo": false
+      }
     },
     {
       "label": "[EXECUTE] SIMULATION",
@@ -72,10 +62,8 @@
       "dependsOn": "[COMPILE] SIMULATION",
       "problemMatcher": [],
       "presentation": {
-        "echo": false,
-        "reveal": "never"
-      },
-      "isBackground": true
+        "echo": false
+      }
     },
     {
       "label": "[COMPILE] SIMULATION",
@@ -85,7 +73,16 @@
       },
       "command": "gcc -g input_parameters.c cmd_args.c ejs.c -o ejs -lm",
       "problemMatcher": [],
-      "isBackground": true
+      "dependsOn": "CLEAN",
+      "presentation": {
+        "echo": false
+      }
+    },
+    {
+      "label": "CLEAN",
+      "type": "shell",
+      "command": "clear",
+      "problemMatcher": []
     },
     {
       "label": "EX1 => PLOT",
