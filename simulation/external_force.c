@@ -7,8 +7,9 @@ double fExternal(int i, int d, double x[N][D], double m[N])
     for (int j = 0; j < N ; j++)
     {
         force += fInternal(i, j, d, x, m);
+        printf("i = %d\n", i);
+        printf("fInternal = %e\n", fInternal(i, j, d, x, m));
     }
-    printf("i = %d\n", i);
-    printf("%.25f\n", force);
+
     return force;
 }

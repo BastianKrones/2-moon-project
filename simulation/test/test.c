@@ -42,7 +42,7 @@ MU_TEST(fInternal_check) {
 	double should = -1 * 1.030254536 * pow(10, -12);
 
 	// allowed error for float
-	double eps = 0.000000000001;
+	double eps = 0.0000000000000000001;
 
 	// masses and positions for the system
 	double m[] = {54278, 1241, 1252};
