@@ -1,15 +1,7 @@
 #include "initialize.h"
 
-void initialize(int argc, char* argv[]) {
-
-    process_cmd_args(argc, argv);
-
-    //define everything
-    double energy;
-    double t;
-    double x[N][D], v[N][D], a[N][D];
-    double m[N];
-
+void initialize(double energy, double t, double x[N][D], double v[N][D], double m[N])
+{
     //initialize starting conditions
     t = t_0;
     for (int b = 0; b < N; b++)
