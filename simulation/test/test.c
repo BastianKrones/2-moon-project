@@ -1,5 +1,9 @@
 #include "minunit.h"
-#include "../cmd_args.h"
+#include "stdlib.h"
+#include "stdio.h"
+
+#include "../input_parameters.h"
+// #include "../cmd_args.h"
 #include "../internal_force.h"
 
 //
@@ -35,16 +39,21 @@ MU_TEST(fInternal_check) {
 	// ONLY WORKS FOR D = 2 AND N > 3
 
 	// expectet value
-	double should = 1.676036058 * pow(10, -11);
+	double should = -1 * 1.030254536 * pow(10, -12);
 
 	// allowed error for float
-	double eps = 0.000001;
+	double eps = 0.000000000001;
 
 	// masses and positions for the system
 	double m[] = {54278, 1241, 1252};
 	double x[3][2] = {{0, 0}, {6319, 653}, {4567, -4674}};
 
-	mu_check((fInternal(1, 2, 0, x, m) - 0.0) == eps);
+	double force = fInternal(1, 2, 0, x, m);
+
+
+	mu_check(fabs(fInternal(1, 2, 0, x, m) - should) <= eps);
+	mu_check(fInternal(1, 1, 0, x, m) == 0);
+	mu_check(fInternal(0, 2, 0, x, m) == 0);
 }
 
 MU_TEST_SUITE(internal_force_suite) {
