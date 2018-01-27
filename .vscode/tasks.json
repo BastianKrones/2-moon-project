@@ -2,120 +2,79 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "SIMULATION => RUN",
-      "type": "shell",
-      "command": "rm ./simulation/ejs",
-      "dependsOn": "[REMOVE] SIMULATION TEST",
+      "label": "SIMULATION",
+      "dependsOn": ["SIMULATION [RUN]","SIMULATION [TEST]"],
       "group": {
         "kind": "build",
         "isDefault": true
       },
-      "problemMatcher": [],
-      "presentation": {
-        "echo": false
-      }
-    },
-    {
-      "label": "[REMOVE] SIMULATION TEST",
-      "type": "shell",
-      "command": "rm ./simulation/test/test",
-      "dependsOn": "[RUN TEST] SIMULATION",
-      "problemMatcher": [],
-      "presentation": {
-        "echo": false
-      },
-    },
-    {
-      "label": "[RUN TEST] SIMULATION",
-      "dependsOn": "[TEST] SIMULATION",
-      "type": "shell",
-      "options": {
-        "cwd": "${workspaceFolder}/simulation/test"
-      },
-      "presentation": {
-        "echo": true,
-      },
-      "command": "./test",
       "problemMatcher": []
     },
     {
-      "label": "[TEST] SIMULATION",
+      "label": "SIMULATION [RUN]",
       "type": "shell",
       "options": {
         "cwd": "${workspaceFolder}/simulation"
       },
-      "command":
-        "gcc -g input_parameters.c internal_force.c external_force.c acceleration.c test/test.c -o test/test -lrt -lm",
-      "dependsOn": "[EXECUTE] SIMULATION",
-      "problemMatcher": [],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
       "presentation": {
         "echo": false
-      }
-    },
-    {
-      "label": "[EXECUTE] SIMULATION",
-      "type": "shell",
-      "options": {
-        "cwd": "${workspaceFolder}/simulation"
       },
       "command": "./ejs",
-      "dependsOn": "[COMPILE] SIMULATION",
       "problemMatcher": [],
-      "presentation": {
-        "echo": false
-      }
+      "dependsOn": "SIMULATION [COMPILE]"
     },
     {
-      "label": "[COMPILE] SIMULATION",
+      "label": "SIMULATION [COMPILE]",
       "type": "shell",
       "options": {
         "cwd": "${workspaceFolder}/simulation"
       },
       "command": "gcc -g input_parameters.c internal_force.c external_force.c initialize.c cmd_args.c ejs.c -o ejs -lm",
+      "dependsOn": "CLEAR",
       "problemMatcher": [],
-      "dependsOn": "CLEAN",
       "presentation": {
         "echo": false
       }
     },
     {
-      "label": "CLEAN",
+      "label": "CLEAR",
       "type": "shell",
       "command": "clear",
       "problemMatcher": []
     },
     {
-      "label": "EX1 => PLOT",
+      "label": "SIMULATION [TEST]",
+      "dependsOn": "SIMULATION [TEST1]",
       "type": "shell",
       "options": {
-        "cwd": "${workspaceFolder}/exercise_1"
+        "cwd": "${workspaceFolder}/simulation/test"
       },
-      "command": "gnuplot ./ex1_plot.gnu",
-      "dependsOn": "[REMOVE] EX1",
       "group": {
         "kind": "build",
         "isDefault": true
       },
-
-      "problemMatcher": []
-    },
-    {
-      "label": "EX1 => RUN",
-      "type": "shell",
-      "command": "rm ./exercise_1/Intr_ex_1",
-      "dependsOn": "EX1 => EXECUTE",
-      "group": {
-        "kind": "build",
-        "isDefault": true
+      "presentation": {
+        "echo": true
       },
+      "command": "./test",
       "problemMatcher": []
     },
     {
-      "label": "EX1 => EXECUTE",
+      "label": "SIMULATION [TEST1]",
       "type": "shell",
-      "command": "./exercise_1/Intr_ex_1",
-      "dependsOn": "[COMPILE] EX1",
-      "problemMatcher": []
+      "options": {
+        "cwd": "${workspaceFolder}/simulation"
+      },
+      "command": "gcc -g input_parameters.c internal_force.c external_force.c acceleration.c test/test.c -o test/test -lrt -lm",
+      "dependsOn": "CLEAR",
+      "problemMatcher": [],
+      "presentation": {
+        "echo": false
+      }
     },
     {
       "label": "[COMPILE] EX1",
@@ -158,8 +117,7 @@
     {
       "label": "[COMPILE] EX2",
       "type": "shell",
-      "command":
-        "gcc -g ./exercise_2/Intr_ex_2.c -o ./exercise_2/Intr_ex_2 -lm",
+      "command": "gcc -g ./exercise_2/Intr_ex_2.c -o ./exercise_2/Intr_ex_2 -lm",
       "problemMatcher": []
     }
   ]
