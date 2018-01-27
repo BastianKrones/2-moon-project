@@ -8,7 +8,6 @@ double fExternal(int i, int d, double x[N][D], double m[N])
     {
         force += fInternal(i, j, d, x, m);
     }
-    printf("force = %e\n", force);
 
     return force;
 }
