@@ -8,14 +8,14 @@
       "dependsOn": "[REMOVE] SIMULATION TEST",
       "group": {
         "kind": "build",
-        "isDefault":true
+        "isDefault": true
       },
       "problemMatcher": [],
       "presentation": {
         "echo": false,
         "reveal": "silent",
-        "focus": false,
-      },
+        "focus": false
+      }
     },
     {
       "label": "[REMOVE] SIMULATION TEST",
@@ -28,7 +28,7 @@
         "reveal": "never",
         "focus": false
       },
-      "isBackground": true      
+      "isBackground": true
     },
     {
       "label": "[RUN TEST] SIMULATION",
@@ -41,7 +41,7 @@
       "presentation": {
         "panel": "dedicated",
         "echo": false,
-        "reveal":"always",
+        "reveal": "always",
         "focus": true
       },
       "problemMatcher": []
@@ -52,9 +52,7 @@
       "options": {
         "cwd": "${workspaceFolder}/simulation"
       },
-      "command":
-        // "gcc -g input_parameters.c internal_force.c external_force.c test/test.c -o test/test -lrt -lm"
-        "gcc -g input_parameters.c cmd_args.c test/test.c -o test/test -lrt -lm",
+      "command": "gcc -g input_parameters.c internal_force.c external_force.c test/test.c -o test/test -lrt -lm",
       "dependsOn": "[EXECUTE] SIMULATION",
       "problemMatcher": [],
       "presentation": {
