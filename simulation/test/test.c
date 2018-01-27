@@ -126,6 +126,8 @@ MU_TEST(kin_energy_check) {
 
 MU_TEST_SUITE(energy_suite) {
 	MU_RUN_TEST(kin_energy_check);
+}
+
 // next_copy
 //
 MU_TEST(adv_copy_check) {
@@ -145,6 +147,7 @@ MU_TEST(adv_copy_check) {
 	adv_copy(vprime,  xprime,  v,  x, 0,  w,  k);
 	for (int i; i < N; i++)
 	{
+		printf("test");
 		mu_check(xprime[i][0] == x[i][0]);
 		mu_check(vprime[i][0] == v[i][0]);
 	}

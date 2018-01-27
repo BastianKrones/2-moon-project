@@ -30,7 +30,6 @@ double calculate_kin_energy(int i, double v[N][D], double m[N])
         kin_energy += 0.5 * m[i] * pow(v[i][k], 2);
     }
 
-    printf("%.30e", kin_energy);
     return kin_energy;
 }
 
