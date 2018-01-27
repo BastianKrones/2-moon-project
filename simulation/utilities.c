@@ -1,26 +1,34 @@
+#include <stdio.h>
+#include <stdlib.h>
 #include "utilities.h"
 
-void save_data_to_file(double x[N][D], double v[N][D], double t[S])
+void save_data_to_file(double t, double x[N][D], double v[N][D])
 {
-    FILE *fp = fopen("./output_coord_cartesian", "w");
+    FILE *fp;
 
-    for (int i = 0 ; i < S ; i++)
+    fp = fopen("./output_coord_cartesian", "w");
+
+    fprintf(fp, "%17.0f", t);
+    for (int j = 0 ; j < N ; j++)
     {
-        fprintf(fp, "%11f", t[i]);
-        for (int j = 0 ; j < N ; j++)
+        for (int k = 0 ; k < D ; k++)
         {
-            for (int k = 0 ; k < D ; k++)
+            if(j==0)
             {
-                fprintf( fp , "%11f", x[j][k][i]);
-            }
-            for (int k = 0 ; k < D ; k++)
+                fprintf( fp , "%20.0f", x[j][k]);
+            } 
+            else
             {
-                fprintf( fp , "%11f", v[j][k][i]);
+                fprintf( fp , "%17.3f", x[j][k]);
             }
         }
-        
-        fprintf(fp, "\n");
+        for (int k = 0 ; k < D ; k++)
+        {
+            fprintf( fp , "%17.3f", v[j][k]);
+        }
     }
+    
+    fprintf(fp, "\n");
 
     fclose(fp);
 };

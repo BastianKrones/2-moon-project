@@ -1,7 +1,8 @@
 #include "cmd_args.h"
 #include "input_parameters.h"
 #include "initialize.h"
-
+#include "utilities.h"
+#include "energy.h"
 
 int main(int argc, char* argv[])
 {
@@ -14,6 +15,11 @@ int main(int argc, char* argv[])
     double m[N];
 
     initialize(energy, t, x, v, m);
+
+    //to be iterated late on for each step/time  
+    save_data_to_file(t, x, v);
+
+    calculate_kin_energy(1, v, m);
 
     return 0; //this ... is .... SPARTAAAAA!!!!!
 }

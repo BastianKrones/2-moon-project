@@ -33,7 +33,7 @@
       "options": {
         "cwd": "${workspaceFolder}/simulation"
       },
-      "command": "gcc -g input_parameters.c internal_force.c external_force.c initialize.c cmd_args.c ejs.c -o ejs -lm",
+      "command": "gcc -g input_parameters.c internal_force.c external_force.c energy.c initialize.c utilities.c cmd_args.c ejs.c -o ejs -lm",
       "dependsOn": "CLEAR",
       "problemMatcher": [],
       "presentation": {
@@ -69,7 +69,7 @@
       "options": {
         "cwd": "${workspaceFolder}/simulation"
       },
-      "command": "gcc -g input_parameters.c internal_force.c external_force.c acceleration.c test/test.c -o test/test -lrt -lm",
+      "command": "gcc -g input_parameters.c internal_force.c external_force.c energy.c acceleration.c utilities.c test/test.c -o test/test -lrt -lm",
       "dependsOn": "CLEAR",
       "problemMatcher": [],
       "presentation": {

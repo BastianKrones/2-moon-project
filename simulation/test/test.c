@@ -6,6 +6,7 @@
 #include "../internal_force.h"
 #include "../external_force.h"
 #include "../acceleration.h"
+#include "../energy.h"
 
 //
 // input parameters tests
@@ -65,7 +66,7 @@ MU_TEST_SUITE(internal_force_suite) {
 MU_TEST(fExternal_check) {
 	// ONLY WORKS FOR D = 2 AND N > 3
 
-	// expectet value
+	// expected value
 	double should = -1 * 1.11838089 * pow(10, -10);
 
 	// allowed error for float
@@ -88,7 +89,7 @@ MU_TEST_SUITE(external_force_suite) {
 //
 MU_TEST(calculate_acceleration_check) {
 
-	//expectet value
+	//expected value
 	double should = -1*9.011933036 * pow(10, -14);
 
 	// allowed error for float
@@ -106,11 +107,33 @@ MU_TEST_SUITE(acceleration_suite) {
 	MU_RUN_TEST(calculate_acceleration_check);
 }
 
+//
+// energy
+//
+MU_TEST(kin_energy_check) {
+	
+	// expected value
+	long double should = 661663058491691136;
+
+	// allowed error for float
+	double eps = 0.0000000000000000001;
+
+	double v[3][2] = {{0, 0}, {325634, -23630}, {15324, -36234}};
+	double m[] = {542781632, 12414421, 125252};
+
+	mu_check(fabs(calculate_kin_energy(1, v, m) - should) <= eps);
+}
+
+MU_TEST_SUITE(energy_suite) {
+	MU_RUN_TEST(kin_energy_check);
+}
+
 int main(int argc, char *argv[]) {
 	MU_RUN_SUITE(input_parameters_suite);
 	MU_RUN_SUITE(internal_force_suite);
 	MU_RUN_SUITE(external_force_suite);
 	MU_RUN_SUITE(acceleration_suite);
+	MU_RUN_SUITE(energy_suite);
 	MU_REPORT();
 	return 0;
 }
