@@ -65,10 +65,10 @@ MU_TEST(fExternal_check) {
 	// ONLY WORKS FOR D = 2 AND N > 3
 
 	// expectet value
-	double should = -1 * 1.118381 * pow(10, -10);
+	double should = -1 * 1.11838089 * pow(10, -10);
 
 	// allowed error for float
-	double eps = 0.00000000000000000001;
+	double eps = 0.000000000000000001;
 
 	// masses and positions for the system
 	double m[] = {54278, 1241, 1252};
