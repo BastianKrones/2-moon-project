@@ -1,4 +1,4 @@
-#include "internal_force.h"
+#include "./internal_force.h"
 
 // force acting on the i-th body from the j-th body at the d-th dimention
 double fInternal(int i, int j, int d, double x[N][D], double m[N])

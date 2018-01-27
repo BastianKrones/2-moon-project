@@ -33,7 +33,7 @@
       "options": {
         "cwd": "${workspaceFolder}/simulation"
       },
-      "command": "gcc -g input_parameters.c internal_force.c external_force.c initialize.c cmd_args.c energy.c utilities.c  next_copy.c ejs.c -o ejs -lm",
+      "command": "gcc -g utilities/input_parameters.c forces/internal_force.c forces/external_force.c utilities/initialize.c utilities/cmd_args.c check_simulation/energy.c forces/acceleration.c utilities/save_to_file.c  runge_kutta/next_copy.c ejs.c -o ejs -lm",
       "dependsOn": "CLEAR",
       "problemMatcher": [],
       "presentation": {
@@ -69,7 +69,7 @@
       "options": {
         "cwd": "${workspaceFolder}/simulation"
       },
-      "command": "gcc -g input_parameters.c internal_force.c external_force.c energy.c acceleration.c utilities.c next_copy.c test/test.c -o test/test -lrt -lm",
+      "command": "gcc -g utilities/input_parameters.c forces/internal_force.c forces/external_force.c check_simulation/energy.c forces/acceleration.c utilities/save_to_file.c runge_kutta/next_copy.c test/test.c -o test/test -lrt -lm",
       "dependsOn": "CLEAR",
       "problemMatcher": [],
       "presentation": {

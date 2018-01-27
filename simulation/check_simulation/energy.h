@@ -1,4 +1,4 @@
-#include "input_parameters.h"
+#include "../utilities/input_parameters.h"
 
 #ifndef ENERGYN
 #define ENERGYN

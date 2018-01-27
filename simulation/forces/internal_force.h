@@ -1,6 +1,6 @@
 #include <math.h>
 
-#include "input_parameters.h"
+#include "../utilities/input_parameters.h"
 
 #ifndef INTERNAL_FORCEN
 #define INTERNAL_FORCEN

@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "utilities.h"
+#include "./save_to_file.h"
 
 void save_data_to_file(double t, double x[N][D], double v[N][D])
 {

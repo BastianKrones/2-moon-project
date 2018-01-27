@@ -2,12 +2,12 @@
 #include "stdlib.h"
 #include "stdio.h"
 
-#include "../input_parameters.h"
-#include "../internal_force.h"
-#include "../external_force.h"
-#include "../acceleration.h"
-#include "../energy.h"
-#include "../next_copy.h"
+#include "../utilities/input_parameters.h"
+#include "../forces/internal_force.h"
+#include "../forces/external_force.h"
+#include "../forces/acceleration.h"
+#include "../check_simulation/energy.h"
+#include "../runge_kutta/next_copy.h"
 
 //
 // input parameters tests
@@ -160,7 +160,6 @@ MU_TEST(adv_copy_check)
 	adv_copy(vprime, xprime, v, x, 0, w, k);
 	for (int i; i < N; i++)
 	{
-		printf("test");
 		mu_check(xprime[i][0] == x[i][0]);
 		mu_check(vprime[i][0] == v[i][0]);
 	}
