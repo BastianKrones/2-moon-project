@@ -5,6 +5,7 @@
 #include "../input_parameters.h"
 #include "../internal_force.h"
 #include "../external_force.h"
+#include "../acceleration.h"
 
 //
 // input parameters tests
@@ -89,7 +90,7 @@ MU_TEST_SUITE(external_force_suite) {
 MU_TEST(calculate_acceleration_check) {
 
 	//expectet value
-	double should = 9.011933036 * pow(10, -14);
+	double should = -1*9.011933036 * pow(10, -14);
 
 	// allowed error for float
 	double eps = 0.000000000000000001;
@@ -110,6 +111,7 @@ int main(int argc, char *argv[]) {
 	MU_RUN_SUITE(input_parameters_suite);
 	MU_RUN_SUITE(internal_force_suite);
 	MU_RUN_SUITE(external_force_suite);
+	MU_RUN_SUITE(acceleration_suite);
 	MU_REPORT();
 	return 0;
 }
