@@ -11,6 +11,7 @@
 #include "../runge_kutta/next_copy.h"
 #include "../runge_kutta/calc_orders.h"
 #include "../check_simulation/energy.h"
+#include "../runge_kutta/connector.h"
 
 //
 // input parameters tests
@@ -227,15 +228,36 @@ MU_TEST(calc_orders_check)
 	mu_check(fabsl(w[1][0][0] - should_w) <= eps);
 }
 
-MU_TEST_SUITE(calc_orders_shuite)
+MU_TEST_SUITE(calc_orders_suite)
 {
 	MU_RUN_TEST(calc_orders_check);
 }
 
+MU_TEST(connector_check)
+{
+	//allowed float error
+	long double eps = 0.0000000001;
+
+	long double should = 6347.81666666666666666666666666;
+
+	// masses, position and speeds for the Test system
+	long double x[3][2] = {{0, 0}, {6319, 653}, {4567, -4674}};
+	long double w[3][2][4] = {{{3.7, 4.7, 5.9, 5.7}, {4.7, 3.5, 8.9, 5.4}}, {{4.6, 77.9, 4.4, 3.7}, {4.6, 7.4, 5.6, 7.9}}, {{2.6, 7.8, 95.34, 5.5}, {2.5, 3.6, 4.2, 4.7}}};
+
+	mu_check(fabsl(component_connect(1, 0, w, x) - should) <= eps);
+}
+
+
+MU_TEST_SUITE(connector_suite)
+{
+	MU_RUN_TEST(connector_check);
+}
+
+
 int main(int argc, char *argv[])
 {
 	// ONLY WORKS FOR D = 2 AND N > 3
-	if (D == 2 && N >= 3)
+	if (D == 2 && N >= 3 && h == 0.05)
 	{
 		MU_RUN_SUITE(input_parameters_suite);
 		MU_RUN_SUITE(internal_force_suite);
@@ -243,13 +265,14 @@ int main(int argc, char *argv[])
 		MU_RUN_SUITE(acceleration_suite);
 		MU_RUN_SUITE(energy_suite);
 		MU_RUN_SUITE(next_copy_suite);
-		MU_RUN_SUITE(calc_orders_shuite);
+		MU_RUN_SUITE(calc_orders_suite);
 		MU_RUN_SUITE(energy_suite);
+		MU_RUN_SUITE(connector_suite);
 		MU_REPORT();
 	}
 	else
 	{
-		printf("ERROR: tests work only for D = 2 and N >= 3");
+		printf("ERROR: tests work only for D = 2, N >= 3 and h = 0.05");
 	}
 	return 0;
 }
