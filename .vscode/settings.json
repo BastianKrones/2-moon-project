@@ -7,7 +7,8 @@
         "runge_kutta_4.h": "c",
         "input_physical_data_test.h": "c",
         "initialize.h": "c",
-        "cmd_args.h": "c"
+        "cmd_args.h": "c",
+        "energy.h": "c"
     },
     "C_Cpp.intelliSenseEngineFallback": "Disabled",
     "cmake.sourceDirectory": "${workspaceRoot}/simulation/"

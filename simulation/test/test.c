@@ -136,10 +136,6 @@ MU_TEST(kin_energy_check)
 	long double v[3][2] = {{0, 0}, {325634, -23630}, {15324, -36234}};
 	long double m[] = {542781632, 12414421, 125252};
 
-	// printf("\nkin_energy: %Lf\n", calculate_kin_energy(1, v, m));
-	// printf("should: %Lf\n", should);
-	// printf("Substraction: %Lf\n", calculate_kin_energy(1, v, m) - should);
-	// printf("fabs of subs: %f\n", fabs(calculate_kin_energy(1, v, m) - should));
 	mu_check(fabs(calculate_kin_energy(1, v, m) - should) <= eps);
 }
 
@@ -153,6 +149,7 @@ MU_TEST(distance_check)
 	mu_check(fabs(calculate_distance(1, 2, x) - should) <= eps);
 }
 
+// needs to be checked
 MU_TEST(energy_pot_check)
 {
 	long double x[3][2] = {{0, 0}, {151000, 0}, {151500, 0}};
@@ -164,19 +161,19 @@ MU_TEST(energy_pot_check)
 	long double should03 = 1.3536700090368 * pow(10, 23);
 	long double should = -1 * (should01 + should02 + should03);
 
-	printf("\nDistance 0 1: %.30Le\n", calculate_distance(0, 1, x));
-	printf("Distance 0 2: %.30Le\n", calculate_distance(0, 2, x));
-	printf("Distance 1 2: %.30Le\n", calculate_distance(1, 2, x));
-	printf("Mass of 0: %.30Le\n", m[0]);
-	printf("Mass of 1: %.30Le\n", m[1]);
-	printf("Pot energy 0 1: %.30Le\n", 6.67408 * pow(10, -11) * m[0] * m[1] / calculate_distance(0, 1, x));
-	printf("Pot energy 0 2: %.30Le\n", -G * m[0] * m[2] / calculate_distance(0, 2, x));
-	printf("Pot energy 1 2: %.30Le\n", -G * pow(10, -11) * m[1] * m[2] / calculate_distance(1, 2, x));
-	printf("Pot energy 0: %.30Le\n", should);
+	// printf("\nDistance 0 1: %.30Le\n", calculate_distance(0, 1, x));
+	// printf("Distance 0 2: %.30Le\n", calculate_distance(0, 2, x));
+	// printf("Distance 1 2: %.30Le\n", calculate_distance(1, 2, x));
+	// printf("Mass of 0: %.30Le\n", m[0]);
+	// printf("Mass of 1: %.30Le\n", m[1]);
+	// printf("Pot energy 0 1: %.30Le\n", 6.67408 * pow(10, -11) * m[0] * m[1] / calculate_distance(0, 1, x));
+	// printf("Pot energy 0 2: %.30Le\n", -G * m[0] * m[2] / calculate_distance(0, 2, x));
+	// printf("Pot energy 1 2: %.30Le\n", -G * pow(10, -11) * m[1] * m[2] / calculate_distance(1, 2, x));
+	// printf("Pot energy 0: %.30Le\n", should);
 	long double calc_pot_energy = 0;
 	calc_pot_energy = calculate_pot_energy(x, v, m);
-	printf("Pot energy 1: %.30Le\n", calc_pot_energy);
-	printf("Pot energy Total diff: %.30Le\n", calc_pot_energy - should);
+	// printf("Pot energy 1: %.30Le\n", calc_pot_energy);
+	// printf("Pot energy Total diff: %.30Le\n", calc_pot_energy - should);
 	mu_check(fabs(calc_pot_energy - should) <= eps);
 }
 
