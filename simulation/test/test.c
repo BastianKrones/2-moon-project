@@ -193,21 +193,23 @@ MU_TEST_SUITE(next_copy_suite)
 MU_TEST(calc_orders_check)
 {
 	// test data
-	long double x[3][2] = {{0, 0}, {6319, 653}, {4567, -4674}};
 	long double v[3][2] = {{0, 0}, {325634, -23630}, {15324, -36234}};
-	long double m[] = {542781632, 12414421, 125252};
+	long double m[] = {54278, 1241, 1252};
+	long double x[3][2] = {{0, 0}, {6319, 653}, {4567, -4674}};
 
 	long double w[3][2][3];
 	long double k[3][2][3];
 
-	long double eps = 0.000000001;
 
-	long double should_k = -1 * 9.011933036 * pow(10, -14);
-	long double should_w = 16281.7;
+	long double should_w = -1 * 9.011933036 * pow(10, -14) * 0.05;
+	long double should_k = 16281.7;
 
-	calculate_orders(0, x, v, m);
-	mu_check(fabsl(w[1][0][0] - should_w) < eps);
-	mu_check(fabsl(k[1][0][0] - should_k) < eps);
+
+	calculate_orders(0, k, w, x, v, m);
+	long double eps = 0.000000000001;
+	mu_check(fabsl(k[1][0][0] - should_k) <= eps);
+	eps = 0.0000000000000001;
+	mu_check(fabsl(w[1][0][0] - should_w) <= eps);
 }
 
 MU_TEST_SUITE(calc_orders_shuite)
