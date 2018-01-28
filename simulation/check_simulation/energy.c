@@ -1,6 +1,8 @@
 #include "energy.h"
 
+double calculate_distance(int i, int j, double x[N][D]);
 double calculate_kin_energy(int i, double v[N][D], double m[N]);
+// double calculate_pot_energy(double x[N][D], double v[N][D], double m[N]);
 
 double calculate_energy(int i, int j, double x[N][D], double v[N][D], double m[N])
 {
@@ -16,6 +18,7 @@ double calculate_energy(int i, int j, double x[N][D], double v[N][D], double m[N
     }
     else
     {
+        calculate_distance(0, 1, x);
         double energy = calculate_kin_energy(i, v, m);
 
         return energy;
@@ -59,11 +62,13 @@ double calculate_pot_energy(double x[N][D], double v[N][D], double m[N])
     // return energy;
 }
 
-double calculate_distance(int i, int j)
+double calculate_distance(int i, int j, double x[N][D])
 {
-    // double distance = 0;
+    double distance = 0;
+    for (int k = 0; k < D; k++)
+    {
+        distance += pow(x[i][k] - x[j][k], 2);
+    }
 
-    // distance = pow(x[j][0] - x[i][0], 2) + pow(x[j][1] - x[i][1], 2) + pow(x[j][2] - x[i][2], 2);
-
-    // return distance;
+    return pow(distance,0.5);
 }

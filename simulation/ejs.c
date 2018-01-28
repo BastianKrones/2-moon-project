@@ -1,8 +1,8 @@
-#include "cmd_args.h"
-#include "input_parameters.h"
-#include "initialize.h"
-#include "utilities.h"
-#include "energy.h"
+#include "./utilities/cmd_args.h"
+#include "./utilities/input_parameters.h"
+#include "./utilities/initialize.h"
+#include "./utilities/save_to_file.h"
+#include "./check_simulation/energy.h"
 
 int main(int argc, char *argv[])
 {
