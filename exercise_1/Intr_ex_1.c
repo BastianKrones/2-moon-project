@@ -17,8 +17,8 @@ int main(void)
 
 	//Nuber of steps needed
 	int steps = (T - t_0) / h;
-	double t[steps];
-	double x[steps];
+	long double t[steps];
+	long double x[steps];
 
 	t[0] = t_0;
 	x[0] = x_0;
@@ -35,8 +35,7 @@ int main(void)
 
 	for (int i = 0; i <= (steps - 1); i++)
 	{
-		fprintf(fp, "%f %11f \n", t[i], x[i]);
-		// fprintf(fp, "%f %11f \n", 1.0, 1.0);
+		fprintf(fp, "%Lf %11Lf \n", t[i], x[i]);
 	}
 
 	fclose(fp);

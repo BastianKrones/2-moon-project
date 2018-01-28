@@ -7,7 +7,7 @@ void process_cmd_args(int argc, char *argv[])
         if (strcmp(argv[i], "-h") == 0)
         {
             printf("Input initial steplenght: ");
-            scanf("%lf", &h);
+            scanf("%Lf", &h);
         }
         else
         {

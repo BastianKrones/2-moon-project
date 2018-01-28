@@ -3,7 +3,7 @@
   "tasks": [
     {
       "label": "SIMULATION",
-      "dependsOn": ["SIMULATION [RUN]","SIMULATION [TEST]"],
+      "dependsOn": ["SIMULATION [RUN]", "SIMULATION [TEST]"],
       "group": {
         "kind": "build",
         "isDefault": true
@@ -33,7 +33,8 @@
       "options": {
         "cwd": "${workspaceFolder}/simulation"
       },
-      "command": "gcc -g utilities/input_parameters.c forces/internal_force.c forces/external_force.c utilities/initialize.c utilities/cmd_args.c check_simulation/energy.c forces/acceleration.c utilities/save_to_file.c  runge_kutta/next_copy.c ejs.c -o ejs -lm",
+      "command":
+        "gcc -g utilities/input_parameters.c forces/internal_force.c forces/external_force.c utilities/initialize.c utilities/cmd_args.c check_simulation/energy.c forces/acceleration.c utilities/save_to_file.c  runge_kutta/next_copy.c ejs.c -o ejs -lm",
       "dependsOn": "CLEAR",
       "problemMatcher": [],
       "presentation": {
@@ -69,7 +70,12 @@
       "options": {
         "cwd": "${workspaceFolder}/simulation"
       },
+<<<<<<< HEAD
       "command": "gcc -g utilities/input_parameters.c forces/internal_force.c forces/external_force.c check_simulation/energy.c forces/acceleration.c utilities/save_to_file.c runge_kutta/next_copy.c runge_kutta/calc_orders.c test/test.c -o test/test -lrt -lm",
+=======
+      "command":
+        "gcc -g utilities/input_parameters.c forces/internal_force.c forces/external_force.c check_simulation/energy.c forces/acceleration.c utilities/save_to_file.c runge_kutta/next_copy.c test/test.c -o test/test -lrt -lm",
+>>>>>>> 91bd431928abf7fae3d5c00c0eb942b622e64710
       "dependsOn": "CLEAR",
       "problemMatcher": [],
       "presentation": {
@@ -77,9 +83,42 @@
       }
     },
     {
+      "label": "EX1 => PLOT",
+      "type": "shell",
+      "options": {
+        "cwd": "${workspaceFolder}/exercise_1"
+      },
+      "command": "gnuplot ./ex1_plot.gnu",
+      "dependsOn": "[REMOVE] EX1",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "EX1 => RUN",
+      "type": "shell",
+      "command": "rm ./exercise_1/Intr_ex_1",
+      "dependsOn": "[EXECUTE] EX1",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "[EXECUTE] EX1",
+      "type": "shell",
+      "command": "./exercise_1/Intr_ex_1",
+      "dependsOn": "[COMPILE] EX1",
+      "problemMatcher": []
+    },
+    {
       "label": "[COMPILE] EX1",
       "type": "shell",
-      "command": "gcc -g ./exercise_1/Intr_ex_1.c -o ./exercise_1/Intr_ex_1",
+      "command":
+        "gcc -g ./exercise_1/Intr_ex_1.c -o ./exercise_1/Intr_ex_1 -lm",
       "problemMatcher": []
     },
     {
@@ -117,7 +156,8 @@
     {
       "label": "[COMPILE] EX2",
       "type": "shell",
-      "command": "gcc -g ./exercise_2/Intr_ex_2.c -o ./exercise_2/Intr_ex_2 -lm",
+      "command":
+        "gcc -g ./exercise_2/Intr_ex_2.c -o ./exercise_2/Intr_ex_2 -lm",
       "problemMatcher": []
     }
   ]

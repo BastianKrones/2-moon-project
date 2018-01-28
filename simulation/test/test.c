@@ -9,7 +9,11 @@
 #include "../forces/acceleration.h"
 #include "../check_simulation/energy.h"
 #include "../runge_kutta/next_copy.h"
+<<<<<<< HEAD
 #include "../runge_kutta/calc_orders.h"
+=======
+#include "../check_simulation/energy.h"
+>>>>>>> 91bd431928abf7fae3d5c00c0eb942b622e64710
 
 //
 // input parameters tests
@@ -126,7 +130,7 @@ MU_TEST(kin_energy_check)
 {
 
 	// expected value
-	long double should = 661663058491691136;
+	long double should = 661663058491691188;
 
 	// allowed error for float
 	long double eps = 0.0000000000000000001;
@@ -134,12 +138,26 @@ MU_TEST(kin_energy_check)
 	long double v[3][2] = {{0, 0}, {325634, -23630}, {15324, -36234}};
 	long double m[] = {542781632, 12414421, 125252};
 
-	// mu_check(fabsl(calculate_kin_energy(1, v, m) - should) <= eps);
+	// printf("\nkin_energy: %Lf\n", calculate_kin_energy(1, v, m));
+	// printf("should: %Lf\n", should);
+	// printf("Substraction: %Lf\n", calculate_kin_energy(1, v, m) - should);
+	// printf("fabs of subs: %f\n", fabs(calculate_kin_energy(1, v, m) - should));
+	mu_check(fabs(calculate_kin_energy(1, v, m) - should) <= eps);
+}
+
+MU_TEST(energy_check)
+{
+	long double x[3][2] = {{0, 0}, {6319, 653}, {4567, -4674}};
+	long double eps = 0.00000001;
+	long double should = 6352.65062789;
+
+	mu_check(fabs(calculate_distance(0, 1, x) - should) <= eps);
 }
 
 MU_TEST_SUITE(energy_suite)
 {
 	MU_RUN_TEST(kin_energy_check);
+	MU_RUN_TEST(energy_check);
 }
 
 //
@@ -228,7 +246,11 @@ int main(int argc, char *argv[])
 		MU_RUN_SUITE(acceleration_suite);
 		MU_RUN_SUITE(energy_suite);
 		MU_RUN_SUITE(next_copy_suite);
+<<<<<<< HEAD
 		MU_RUN_SUITE(calc_orders_shuite);
+=======
+		MU_RUN_SUITE(energy_suite);
+>>>>>>> 91bd431928abf7fae3d5c00c0eb942b622e64710
 		MU_REPORT();
 	}
 	else
