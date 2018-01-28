@@ -158,15 +158,23 @@ MU_TEST(adv_copy_check)
 
 	//mode 0
 	adv_copy(vprime, xprime, v, x, 0, w, k);
-	for (int i; i < N; i++)
-	{
-		mu_check(xprime[i][0] == x[i][0]);
-		mu_check(vprime[i][0] == v[i][0]);
-	}
+	mu_check(xprime[1][0] == x[1][0]);
+	mu_check(vprime[1][0] == v[1][0]);
 
-	//mode
+	//mode 1
 	adv_copy(vprime, xprime, v, x, 1, w, k);
 	mu_check(fabs(xprime[1][0] - 6320.9) <= eps);
+	mu_check(fabs(vprime[1][0] - 325672.95) <= eps);
+
+	//mode 2
+	adv_copy(vprime, xprime, v, x, 2, w, k);
+	mu_check(fabs(xprime[1][0] - 6321.935) <= eps);
+	mu_check(fabs(vprime[1][0] - 325636.2) <= eps);
+
+	//mode 3
+	adv_copy(vprime, xprime, v, x, 3, w, k);
+	mu_check(fabs(xprime[1][0] - 6322.7) <= eps);
+	mu_check(fabs(vprime[1][0] - 325637.7) <= eps);
 }
 
 MU_TEST_SUITE(next_copy_suite)
