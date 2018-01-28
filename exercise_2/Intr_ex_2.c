@@ -4,36 +4,36 @@
 #include <math.h>
 
 
-long double f(long double v,long double x){
-	long double w = 1; //short for alpha
+double f(double v,double x){
+	double w = 1; //short for alpha
 	return -w*x;
 }
 
 
 
 int main(void){
-	long double h = 0.005; //stepsize
+	double h = 0.005; //stepsize
 
 	//define the intervall
-	long double t_0 = 0;
-	long double T = 10;
+	double t_0 = 0;
+	double T = 10;
 
-	long double x_0 = 0; //starting parameters
-	long double v_0 = 1;
+	double x_0 = 0; //starting parameters
+	double v_0 = 1;
 	
 
 
 	int steps = (T - t_0)/h; //Nuber of steps needed
-	long double t[steps];
-	long double x[steps];
-	long double v[steps];
+	double t[steps];
+	double x[steps];
+	double v[steps];
 	
 	t[0] = t_0;
 	v[0] = v_0;
 	x[0] = x_0;
 
 	
-	long double k1, k2, k3, k4, w1, w2, w3, w4;
+	double k1, k2, k3, k4, w1, w2, w3, w4;
 
 	for (int i = 1; i <= (steps -1); i++){
 		k1 = h*v[i-1];
