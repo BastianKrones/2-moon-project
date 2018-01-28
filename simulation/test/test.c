@@ -9,6 +9,7 @@
 #include "../forces/acceleration.h"
 #include "../check_simulation/energy.h"
 #include "../runge_kutta/next_copy.h"
+#include "../runge_kutta/calc_orders.h"
 
 //
 // input parameters tests
@@ -141,6 +142,7 @@ MU_TEST_SUITE(energy_suite)
 	MU_RUN_TEST(kin_energy_check);
 }
 
+//
 // next_copy
 //
 MU_TEST(adv_copy_check)
@@ -185,6 +187,34 @@ MU_TEST_SUITE(next_copy_suite)
 	MU_RUN_TEST(adv_copy_check);
 }
 
+//
+// calc_orders
+//
+MU_TEST(calc_orders_check)
+{
+	// test data
+	long double x[3][2] = {{0, 0}, {6319, 653}, {4567, -4674}};
+	long double v[3][2] = {{0, 0}, {325634, -23630}, {15324, -36234}};
+	long double m[] = {542781632, 12414421, 125252};
+
+	long double w[3][2][3];
+	long double k[3][2][3];
+
+	long double eps = 0.000000001;
+
+	long double should_k = -1 * 9.011933036 * pow(10, -14);
+	long double should_w = 16281.7;
+
+	calculate_orders(0, x, v, m);
+	mu_check(fabsl(w[1][0][0] - should_w) < eps);
+	mu_check(fabsl(k[1][0][0] - should_k) < eps);
+}
+
+MU_TEST_SUITE(calc_orders_shuite)
+{
+	MU_RUN_TEST(calc_orders_check);
+}
+
 int main(int argc, char *argv[])
 {
 	// ONLY WORKS FOR D = 2 AND N > 3
@@ -196,6 +226,7 @@ int main(int argc, char *argv[])
 		MU_RUN_SUITE(acceleration_suite);
 		MU_RUN_SUITE(energy_suite);
 		MU_RUN_SUITE(next_copy_suite);
+		MU_RUN_SUITE(calc_orders_shuite);
 		MU_REPORT();
 	}
 	else
