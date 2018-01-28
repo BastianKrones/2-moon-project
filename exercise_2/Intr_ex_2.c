@@ -53,11 +53,11 @@ int main(void){
 
 	FILE*fp;
 
-	fp = fopen("./data.txt","w");
+	fp = fopen("./exercise_2/data.txt","w");
 	
 
 	for (int i = 0; i <= (steps -1); i++){
-		fprintf(fp, "%f %11f %11f\n", t[i], x[i], v[i]);
+		fprintf(fp, "%Lf %11Lf %11Lf\n", t[i], x[i], v[i]);
 	}
 
 	fclose(fp);

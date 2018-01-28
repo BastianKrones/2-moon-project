@@ -1,4 +1,4 @@
-plot "data.txt" using 1:2
+plot "./data.txt" using 1:2
 replot sin(x) lc 3
 replot cos(x) lc 3
 
