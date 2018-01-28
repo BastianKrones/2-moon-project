@@ -141,19 +141,48 @@ MU_TEST(kin_energy_check)
 	mu_check(fabs(calculate_kin_energy(1, v, m) - should) <= eps);
 }
 
-MU_TEST(energy_check)
+MU_TEST(distance_check)
 {
-	long double x[3][2] = {{0, 0}, {6319, 653}, {4567, -4674}};
+	long double x[3][2] = {{0, 0}, {151000, 0}, {-151500, 0}};
 	long double eps = 0.00000001;
-	long double should = 6352.65062789;
+	long double should = 302500;
 
-	mu_check(fabs(calculate_distance(0, 1, x) - should) <= eps);
+	printf("\nDistance: %Lf\n\n", calculate_distance(1, 2, x));
+	mu_check(fabs(calculate_distance(1, 2, x) - should) <= eps);
+}
+
+MU_TEST(energy_pot_check)
+{
+	long double x[3][2] = {{0, 0}, {151000, 0}, {151500, 0}};
+	long double v[3][2] = {{0, 0}, {325634, -23630}, {15324, -36234}};
+	long double m[] = {5.685 * pow(10, 26), 1.912 * pow(10, 18), 5.304 * pow(10, 17)};
+	long double eps = pow(10, 13);
+	long double should01 = 4.8043298581192052980132450331125827814569536423841059602649006622516556291390728476821192052980132450331125827814569536423841059602649006622516556291390728476821192052 * pow(10, 29);
+	long double should02 = 1.3283507328 * pow(10, 29);
+	long double should03 = 1.3536700090368 * pow(10, 23);
+	long double should = -1 * (should01 + should02 + should03);
+
+	printf("\nDistance 0 1: %.30Le\n", calculate_distance(0, 1, x));
+	printf("Distance 0 2: %.30Le\n", calculate_distance(0, 2, x));
+	printf("Distance 1 2: %.30Le\n", calculate_distance(1, 2, x));
+	printf("Mass of 0: %.30Le\n", m[0]);
+	printf("Mass of 1: %.30Le\n", m[1]);
+	printf("Pot energy 0 1: %.30Le\n", 6.67408 * pow(10, -11) * m[0] * m[1] / calculate_distance(0, 1, x));
+	printf("Pot energy 0 2: %.30Le\n", -G * m[0] * m[2] / calculate_distance(0, 2, x));
+	printf("Pot energy 1 2: %.30Le\n", -G * pow(10, -11) * m[1] * m[2] / calculate_distance(1, 2, x));
+	printf("Pot energy 0: %.30Le\n", should);
+	long double calc_pot_energy = 0;
+	calc_pot_energy = calculate_pot_energy(x, v, m);
+	printf("Pot energy 1: %.30Le\n", calc_pot_energy);
+	printf("Pot energy Total diff: %.30Le\n", calc_pot_energy - should);
+	mu_check(fabs(calc_pot_energy - should) <= eps);
 }
 
 MU_TEST_SUITE(energy_suite)
 {
 	MU_RUN_TEST(kin_energy_check);
-	MU_RUN_TEST(energy_check);
+	MU_RUN_TEST(distance_check);
+	MU_RUN_TEST(energy_pot_check);
 }
 
 //
@@ -212,7 +241,6 @@ int main(int argc, char *argv[])
 		MU_RUN_SUITE(acceleration_suite);
 		MU_RUN_SUITE(energy_suite);
 		MU_RUN_SUITE(next_copy_suite);
-		MU_RUN_SUITE(energy_suite);
 		MU_REPORT();
 	}
 	else
