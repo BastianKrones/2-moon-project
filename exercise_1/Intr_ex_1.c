@@ -17,8 +17,8 @@ int main(void)
 
 	//Nuber of steps needed
 	int steps = (T - t_0) / h;
-	double t[steps];
-	double x[steps];
+	long double t[steps];
+	long double x[steps];
 
 	t[0] = t_0;
 	x[0] = x_0;

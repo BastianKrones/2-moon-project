@@ -3,6 +3,6 @@
 #ifndef EXTERNAL_FORCEN
 #define EXTERNAL_FORCEN
 
-double fExternal(int i, int d, double x[N][D], double m[N]);
+long double fExternal(int i, int d, long double x[N][D], long double m[N]);
 
 #endif

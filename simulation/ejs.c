@@ -9,10 +9,10 @@ int main(int argc, char *argv[])
     process_cmd_args(argc, argv);
 
     //define everything
-    double energy;
-    double t;
-    double x[N][D], v[N][D];
-    double m[N];
+    long double energy;
+    long double t;
+    long double x[N][D], v[N][D];
+    long double m[N];
 
     initialize(energy, t, x, v, m);
 

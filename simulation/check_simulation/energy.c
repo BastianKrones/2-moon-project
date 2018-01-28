@@ -1,8 +1,8 @@
 #include "energy.h"
 
-double calculate_kin_energy(int i, double v[N][D], double m[N]);
+long double calculate_kin_energy(int i, long double v[N][D], long double m[N]);
 
-double calculate_energy(int i, int j, double x[N][D], double v[N][D], double m[N])
+long double calculate_energy(int i, int j, long double x[N][D], long double v[N][D], long double m[N])
 {
     // on centered body is acting no energy
     if (i == 0)
@@ -16,15 +16,15 @@ double calculate_energy(int i, int j, double x[N][D], double v[N][D], double m[N
     }
     else
     {
-        double energy = calculate_kin_energy(i, v, m);
+        long double energy = calculate_kin_energy(i, v, m);
 
         return energy;
     }
 }
 
-double calculate_kin_energy(int i, double v[N][D], double m[N])
+long double calculate_kin_energy(int i, long double v[N][D], long double m[N])
 {
-    double kin_energy = 0;
+    long double kin_energy = 0;
     for (int k = 0; k < D; k++)
     {
         kin_energy += 0.5 * m[i] * pow(v[i][k], 2);
@@ -34,9 +34,9 @@ double calculate_kin_energy(int i, double v[N][D], double m[N])
 }
 
 // calculate the energy for each step
-double calculate_pot_energy(double x[N][D], double v[N][D], double m[N])
+long double calculate_pot_energy(long double x[N][D], long double v[N][D], long double m[N])
 {
-    // double energy = 0;
+    // long double energy = 0;
     // for (int i = 1; 1 < N; i++)
     // {
     //     for (int j = i; j < N; j++)
@@ -59,9 +59,9 @@ double calculate_pot_energy(double x[N][D], double v[N][D], double m[N])
     // return energy;
 }
 
-double calculate_distance(int i, int j)
+long double calculate_distance(int i, int j)
 {
-    // double distance = 0;
+    // long double distance = 0;
 
     // distance = pow(x[j][0] - x[i][0], 2) + pow(x[j][1] - x[i][1], 2) + pow(x[j][2] - x[i][2], 2);
 
