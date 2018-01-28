@@ -74,8 +74,8 @@ static int minunit_fail = 0;
 static int minunit_status = 0;
 
 /*  Timers */
-static long double minunit_real_timer = 0;
-static long double minunit_proc_timer = 0;
+static double minunit_real_timer = 0;
+static double minunit_proc_timer = 0;
 
 /*  Last message */
 static char minunit_last_message[MINUNIT_MESSAGE_LEN];
@@ -126,12 +126,12 @@ static void (*minunit_teardown)(void) = NULL;
 
 /*  Report */
 #define MU_REPORT() MU__SAFE_BLOCK(\
-	long double minunit_end_real_timer;\
-	long double minunit_end_proc_timer;\
+	double minunit_end_real_timer;\
+	double minunit_end_proc_timer;\
 	printf("\n\n%d tests, %d assertions, %d failures\n", minunit_run, minunit_assert, minunit_fail);\
 	minunit_end_real_timer = mu_timer_real();\
 	minunit_end_proc_timer = mu_timer_cpu();\
-	printf("\nFinished in %.8Lf seconds (real) %.8Lf seconds (proc)\n\n",\
+	printf("\nFinished in %.8f seconds (real) %.8f seconds (proc)\n\n",\
 		minunit_end_real_timer - minunit_real_timer,\
 		minunit_end_proc_timer - minunit_proc_timer);\
 )
@@ -181,9 +181,9 @@ static void (*minunit_teardown)(void) = NULL;
 	}\
 )
 
-#define mu_assert_long double_eq(expected, result) MU__SAFE_BLOCK(\
-	long double minunit_tmp_e;\
-	long double minunit_tmp_r;\
+#define mu_assert_double_eq(expected, result) MU__SAFE_BLOCK(\
+	double minunit_tmp_e;\
+	double minunit_tmp_r;\
 	minunit_assert++;\
 	minunit_tmp_e = (expected);\
 	minunit_tmp_r = (result);\
@@ -229,7 +229,7 @@ static void (*minunit_teardown)(void) = NULL;
  * The returned real time is only useful for computing an elapsed time
  * between two calls to this function.
  */
-static long double mu_timer_real(void)
+static double mu_timer_real(void)
 {
 #if defined(_WIN32)
 	/* Windows 2000 and later. ---------------------------------- */
@@ -242,24 +242,24 @@ static long double mu_timer_real(void)
 	Time.QuadPart *= 1000000;
 	Time.QuadPart /= Frequency.QuadPart;
 	
-	return (long double)Time.QuadPart / 1000000.0;
+	return (double)Time.QuadPart / 1000000.0;
 
 #elif (defined(__hpux) || defined(hpux)) || ((defined(__sun__) || defined(__sun) || defined(sun)) && (defined(__SVR4) || defined(__svr4__)))
 	/* HP-UX, Solaris. ------------------------------------------ */
-	return (long double)gethrtime( ) / 1000000000.0;
+	return (double)gethrtime( ) / 1000000000.0;
 
 #elif defined(__MACH__) && defined(__APPLE__)
 	/* OSX. ----------------------------------------------------- */
-	static long double timeConvert = 0.0;
+	static double timeConvert = 0.0;
 	if ( timeConvert == 0.0 )
 	{
 		mach_timebase_info_data_t timeBase;
 		(void)mach_timebase_info( &timeBase );
-		timeConvert = (long double)timeBase.numer /
-			(long double)timeBase.denom /
+		timeConvert = (double)timeBase.numer /
+			(double)timeBase.denom /
 			1000000000.0;
 	}
-	return (long double)mach_absolute_time( ) * timeConvert;
+	return (double)mach_absolute_time( ) * timeConvert;
 
 #elif defined(_POSIX_VERSION)
 	/* POSIX. --------------------------------------------------- */
@@ -286,15 +286,15 @@ static long double mu_timer_real(void)
 		const clockid_t id = (clockid_t)-1;	/* Unknown. */
 #endif /* CLOCK_* */
 		if ( id != (clockid_t)-1 && clock_gettime( id, &ts ) != -1 )
-			return (long double)ts.tv_sec +
-				(long double)ts.tv_nsec / 1000000000.0;
+			return (double)ts.tv_sec +
+				(double)ts.tv_nsec / 1000000000.0;
 		/* Fall thru. */
 	}
 #endif /* _POSIX_TIMERS */
 
 	/* AIX, BSD, Cygwin, HP-UX, Linux, OSX, POSIX, Solaris. ----- */
 	gettimeofday( &tm, NULL );
-	return (long double)tm.tv_sec + (long double)tm.tv_usec / 1000000.0;
+	return (double)tm.tv_sec + (double)tm.tv_usec / 1000000.0;
 #else
 	return -1.0;		/* Failed. */
 #endif
@@ -304,7 +304,7 @@ static long double mu_timer_real(void)
  * Returns the amount of CPU time used by the current process,
  * in seconds, or -1.0 if an error occurred.
  */
-static long double mu_timer_cpu(void)
+static double mu_timer_cpu(void)
 {
 #if defined(_WIN32)
 	/* Windows -------------------------------------------------- */
@@ -319,7 +319,7 @@ static long double mu_timer_cpu(void)
 	{
 		ULARGE_INTEGER userSystemTime;
 		memcpy(&userSystemTime, &userTime, sizeof(ULARGE_INTEGER));
-		return (long double)userSystemTime.QuadPart / 10000000.0;
+		return (double)userSystemTime.QuadPart / 10000000.0;
 	}
 
 #elif defined(__unix__) || defined(__unix) || defined(unix) || (defined(__APPLE__) && defined(__MACH__))
@@ -344,8 +344,8 @@ static long double mu_timer_cpu(void)
 			id = (clockid_t)-1;
 #endif
 		if ( id != (clockid_t)-1 && clock_gettime( id, &ts ) != -1 )
-			return (long double)ts.tv_sec +
-				(long double)ts.tv_nsec / 1000000000.0;
+			return (double)ts.tv_sec +
+				(double)ts.tv_nsec / 1000000000.0;
 	}
 #endif
 
@@ -353,17 +353,17 @@ static long double mu_timer_cpu(void)
 	{
 		struct rusage rusage;
 		if ( getrusage( RUSAGE_SELF, &rusage ) != -1 )
-			return (long double)rusage.ru_utime.tv_sec +
-				(long double)rusage.ru_utime.tv_usec / 1000000.0;
+			return (double)rusage.ru_utime.tv_sec +
+				(double)rusage.ru_utime.tv_usec / 1000000.0;
 	}
 #endif
 
 #if defined(_SC_CLK_TCK)
 	{
-		const long double ticks = (long double)sysconf( _SC_CLK_TCK );
+		const double ticks = (double)sysconf( _SC_CLK_TCK );
 		struct tms tms;
 		if ( times( &tms ) != (clock_t)-1 )
-			return (long double)tms.tms_utime / ticks;
+			return (double)tms.tms_utime / ticks;
 	}
 #endif
 
@@ -371,7 +371,7 @@ static long double mu_timer_cpu(void)
 	{
 		clock_t cl = clock( );
 		if ( cl != (clock_t)-1 )
-			return (long double)cl / (long double)CLOCKS_PER_SEC;
+			return (double)cl / (double)CLOCKS_PER_SEC;
 	}
 #endif
 

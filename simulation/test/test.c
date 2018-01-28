@@ -9,7 +9,9 @@
 #include "../forces/acceleration.h"
 #include "../check_simulation/energy.h"
 #include "../runge_kutta/next_copy.h"
+#include "../runge_kutta/calc_orders.h"
 #include "../check_simulation/energy.h"
+#include "../runge_kutta/connector.h"
 
 //
 // input parameters tests
@@ -230,10 +232,61 @@ MU_TEST_SUITE(next_copy_suite)
 	MU_RUN_TEST(adv_copy_check);
 }
 
+//
+// calc_orders
+//
+MU_TEST(calc_orders_check)
+{
+	// test data
+	long double v[3][2] = {{0, 0}, {325634, -23630}, {15324, -36234}};
+	long double m[] = {54278, 1241, 1252};
+	long double x[3][2] = {{0, 0}, {6319, 653}, {4567, -4674}};
+
+	long double w[3][2][3];
+	long double k[3][2][3];
+
+
+	long double should_w = -1 * 9.011933036 * pow(10, -14) * 0.05;
+	long double should_k = 16281.7;
+
+
+	calculate_orders(0, k, w, x, v, m);
+	long double eps = 0.000000000001;
+	mu_check(fabsl(k[1][0][0] - should_k) <= eps);
+	eps = 0.0000000000000001;
+	mu_check(fabsl(w[1][0][0] - should_w) <= eps);
+}
+
+MU_TEST_SUITE(calc_orders_suite)
+{
+	MU_RUN_TEST(calc_orders_check);
+}
+
+MU_TEST(connector_check)
+{
+	//allowed float error
+	long double eps = 0.0000000001;
+
+	long double should = 6347.81666666666666666666666666;
+
+	// masses, position and speeds for the Test system
+	long double x[3][2] = {{0, 0}, {6319, 653}, {4567, -4674}};
+	long double w[3][2][4] = {{{3.7, 4.7, 5.9, 5.7}, {4.7, 3.5, 8.9, 5.4}}, {{4.6, 77.9, 4.4, 3.7}, {4.6, 7.4, 5.6, 7.9}}, {{2.6, 7.8, 95.34, 5.5}, {2.5, 3.6, 4.2, 4.7}}};
+
+	mu_check(fabsl(component_connect(1, 0, w, x) - should) <= eps);
+}
+
+
+MU_TEST_SUITE(connector_suite)
+{
+	MU_RUN_TEST(connector_check);
+}
+
+
 int main(int argc, char *argv[])
 {
 	// ONLY WORKS FOR D = 2 AND N > 3
-	if (D == 2 && N >= 3)
+	if (D == 2 && N >= 3 && h == 0.05)
 	{
 		MU_RUN_SUITE(input_parameters_suite);
 		MU_RUN_SUITE(internal_force_suite);
@@ -241,11 +294,13 @@ int main(int argc, char *argv[])
 		MU_RUN_SUITE(acceleration_suite);
 		MU_RUN_SUITE(energy_suite);
 		MU_RUN_SUITE(next_copy_suite);
+		MU_RUN_SUITE(calc_orders_suite);
+		MU_RUN_SUITE(connector_suite);
 		MU_REPORT();
 	}
 	else
 	{
-		printf("ERROR: tests work only for D = 2 and N >= 3");
+		printf("ERROR: tests work only for D = 2, N >= 3 and h = 0.05");
 	}
 	return 0;
 }

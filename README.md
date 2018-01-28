@@ -22,6 +22,9 @@
     1. fInternal complete
     2. fExternal comoplete
     3. acceleration complete
+4. next function
+    1. advanced copy function
+    3. calculate orders function 
 
 
 
@@ -32,8 +35,7 @@
 4. programm gnuplot 
 5. progress status bar for calculation
 6. next function
-    1. advanced copy function
-    2. 
+    1. put everything together
 7. step check
 12. PARTY!!!
 
