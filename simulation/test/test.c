@@ -9,11 +9,8 @@
 #include "../forces/acceleration.h"
 #include "../check_simulation/energy.h"
 #include "../runge_kutta/next_copy.h"
-<<<<<<< HEAD
 #include "../runge_kutta/calc_orders.h"
-=======
 #include "../check_simulation/energy.h"
->>>>>>> 91bd431928abf7fae3d5c00c0eb942b622e64710
 
 //
 // input parameters tests
@@ -246,11 +243,8 @@ int main(int argc, char *argv[])
 		MU_RUN_SUITE(acceleration_suite);
 		MU_RUN_SUITE(energy_suite);
 		MU_RUN_SUITE(next_copy_suite);
-<<<<<<< HEAD
 		MU_RUN_SUITE(calc_orders_shuite);
-=======
 		MU_RUN_SUITE(energy_suite);
->>>>>>> 91bd431928abf7fae3d5c00c0eb942b622e64710
 		MU_REPORT();
 	}
 	else

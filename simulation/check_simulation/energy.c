@@ -62,11 +62,7 @@ long double calculate_pot_energy(long double x[N][D], long double v[N][D], long 
     // return energy;
 }
 
-<<<<<<< HEAD
-long double calculate_distance(int i, int j, double x[N][D])
-=======
 long double calculate_distance(int i, int j, long double x[N][D])
->>>>>>> 91bd431928abf7fae3d5c00c0eb942b622e64710
 {
     long double distance = 0;
     for (int k = 0; k < D; k++)
