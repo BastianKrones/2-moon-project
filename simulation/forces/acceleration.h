@@ -4,6 +4,6 @@
 #ifndef ACCELERATIONN
 #define ACCELERATIONN
 
-double calculate_acceleration(int i, int d, double x[N][D], double m[N]);
+long double calculate_acceleration(int i, int d, long double x[N][D], long double m[N]);
 
 #endif

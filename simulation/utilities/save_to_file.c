@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include "./save_to_file.h"
 
-void save_data_to_file(double t, double x[N][D], double v[N][D])
+void save_data_to_file(double t, long double x[N][D], long double v[N][D])
 {
     FILE *fp;
 
@@ -15,16 +15,16 @@ void save_data_to_file(double t, double x[N][D], double v[N][D])
         {
             if (j == 0)
             {
-                fprintf(fp, "%20.0f", x[j][k]);
+                fprintf(fp, "%20.0Lf", x[j][k]);
             }
             else
             {
-                fprintf(fp, "%17.3f", x[j][k]);
+                fprintf(fp, "%17.3Lf", x[j][k]);
             }
         }
         for (int k = 0; k < D; k++)
         {
-            fprintf(fp, "%17.3f", v[j][k]);
+            fprintf(fp, "%17.3Lf", v[j][k]);
         }
     }
 

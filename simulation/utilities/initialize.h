@@ -3,6 +3,6 @@
 #ifndef INITIALIZEN
 #define INITIALIZEN
 
-void initialize(double energy, double t, double x[N][D], double v[N][D], double m[N]);
+void initialize(long double energy, long double t, long double x[N][D], long double v[N][D], long double m[N]);
 
 #endif

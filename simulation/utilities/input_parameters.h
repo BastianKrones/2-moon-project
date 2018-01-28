@@ -14,11 +14,11 @@
 #define prec 1
 
 
-extern double h;
+extern long double h;
 
 
-double initial_velocities(int n, int d);
-double initial_masses(int n);
-double initial_pos(int b, int z);
+long double initial_velocities(int n, int d);
+long double initial_masses(int n);
+long double initial_pos(int b, int z);
 
 #endif

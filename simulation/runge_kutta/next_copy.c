@@ -1,13 +1,13 @@
 #include "next_copy.h"
 
 //gives the correct factor in front of the copy fuction
-double modes(int m)
+long double modes(int m)
 {
-    double factor[4] = {0, 0.5, 0.5, 1};
+    long double factor[4] = {0, 0.5, 0.5, 1};
     return factor[m];
 }
 
-void adv_copy(double vprime[N][D], double xprime[N][D], double v[N][D], double x[N][D], int mode, double w[N][D][4], double k[N][D][4])
+void adv_copy(long double vprime[N][D], long double xprime[N][D], long double v[N][D], long double x[N][D], int mode, long double w[N][D][4], long double k[N][D][4])
 {
     for (int i = 0; i < N; i++)
     {

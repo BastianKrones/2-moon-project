@@ -5,6 +5,6 @@
 #ifndef INTERNAL_FORCEN
 #define INTERNAL_FORCEN
 
-double fInternal(int i, int j, int d, double x[N][D], double m[N]);
+long double fInternal(int i, int j, int d, long double x[N][D], long double m[N]);
 
 #endif
