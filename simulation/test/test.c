@@ -141,9 +141,19 @@ MU_TEST(kin_energy_check)
 	mu_check(fabs(calculate_kin_energy(1, v, m) - should) <= eps);
 }
 
+MU_TEST(energy_check)
+{
+	long double x[3][2] = {{0, 0}, {6319, 653}, {4567, -4674}};
+	long double eps = 0.00000001;
+	long double should = 6352.65062789;
+
+	mu_check(fabs(calculate_distance(0, 1, x) - should) <= eps);
+}
+
 MU_TEST_SUITE(energy_suite)
 {
 	MU_RUN_TEST(kin_energy_check);
+	MU_RUN_TEST(energy_check);
 }
 
 //
@@ -191,16 +201,6 @@ MU_TEST_SUITE(next_copy_suite)
 	MU_RUN_TEST(adv_copy_check);
 }
 
-//
-// energy
-//
-MU_TEST(energy_check)
-{
-	long double x[3][2] = {{0, 0}, {6319, 653}, {4567, -4674}};
-	long double eps = 0.00000000000000001;
-	mu_check(fabs(calculate_distance(0,1, x)));
-}
-
 int main(int argc, char *argv[])
 {
 	// ONLY WORKS FOR D = 2 AND N > 3
@@ -212,6 +212,7 @@ int main(int argc, char *argv[])
 		MU_RUN_SUITE(acceleration_suite);
 		MU_RUN_SUITE(energy_suite);
 		MU_RUN_SUITE(next_copy_suite);
+		MU_RUN_SUITE(energy_suite);
 		MU_REPORT();
 	}
 	else
