@@ -1,4 +1,4 @@
-#include "input_parameters.h"
+#include "./input_parameters.h"
 
 #ifndef INITIALIZEN
 #define INITIALIZEN

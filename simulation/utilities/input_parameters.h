@@ -10,7 +10,7 @@
 #define D 2
 #define G (6.67408*pow(10, -11))
 #define t_0 0
-#define t_1 20
+#define t_1 189216000 // 6 years
 #define prec 1
 
 

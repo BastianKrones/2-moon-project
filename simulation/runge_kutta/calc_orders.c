@@ -1,7 +1,8 @@
 #include "calc_orders.h"
 
-void calculate_orders(int mode, long double k[N][D][3], long double w[N][D][3], long double xprime[N][D], long double vprime[N][D], long double m[N])
+void calculate_orders(int mode, long double k[N][D][4], long double w[N][D][4], long double xprime[N][D], long double vprime[N][D], long double m[N])
 // for w and k list places are [Body number][Dimention][mode]
+// mode goes from 0 to 3
 {
     for (int i = 0; i < N; i++)
     {

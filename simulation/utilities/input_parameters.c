@@ -28,4 +28,4 @@ long double initial_pos(int b, int z)
 	return initial_positions[b][z];
 }
 
-long double h = 0.05;
+long double h = 1;
