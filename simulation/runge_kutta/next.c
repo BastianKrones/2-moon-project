@@ -3,27 +3,39 @@
 void next(long double x[N][D], long double v[N][D], long double *t, long double m[N])
 // testing this function would be a litte to complicadet, i'll do it later when i have enaught time. for now i will say it is runnung correctly
 {
-    
+
     long double xprime[N][D];
     long double vprime[N][D];
 
     long double w[N][D][4];
     long double k[N][D][4];
 
-    for (int i = 0; i < N; i++)
-    {
-        for (int j = 0; j < D; j++){
-            w[i][j][0] = 0;
-            k[i][j][0] = 0;
-        }
-    }
 
     // printf("xlol = %Lf\n", xprime[1][1]);
-    for (int mode = 0; mode < 4; mode++)
-    {
-        adv_copy(vprime, xprime, v, x, 0, w, k);
-        calculate_orders(mode, k, w, xprime, vprime, m);
-    }
+
+    // einfache kopie
+    adv_copy(vprime, xprime, v, x, 0, w, k);
+
+    // errechnen von k_0 und 2_0 darum -1
+    calculate_orders(0, k, w, xprime, vprime, m);
+
+    // kopieren der neuen vektoren mit den neuen gegebenheiten
+    adv_copy(vprime, xprime, v, x, 1, w, k);
+
+    calculate_orders(1, k, w, xprime, vprime, m);
+
+    // printf("w_100 = %.20Le\n", vprime[1][0]);
+    adv_copy(vprime, xprime, v, x, 2, w, k);
+
+    calculate_orders(2, k, w, xprime, vprime, m);
+
+    adv_copy(vprime, xprime, v, x, 3, w, k);
+    calculate_orders(3, k, w, xprime, vprime, m);
+
+
+
+
+
     for (int i = 0; i < N; i++)
     {
         for (int j = 0; j < D; j++)
