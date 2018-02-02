@@ -5,6 +5,8 @@
 #include "./check_simulation/energy.h"
 #include "./runge_kutta/connector.h"
 #include "./runge_kutta/next.h"
+#include "./runge_kutta/calc_orders.h"
+
 
 int main(int argc, char *argv[])
 {
