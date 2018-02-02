@@ -10,6 +10,10 @@
 
 int main(int argc, char *argv[])
 {
+    FILE *fp;
+
+    fp = fopen("./output_coord_cartesian", "w");
+    fclose(fp);
     process_cmd_args(argc, argv);
 
     //define everything
@@ -23,7 +27,7 @@ int main(int argc, char *argv[])
     t = 0;
     save_data_to_file(t, x, v);
     // working loop remember t = t_0
-    while (t <= 60*60*24*10000)
+    while (t <= 10*24*60*60)
     {
         // printf("t = %Lf\n", t);
         next(x, v, &t, m);

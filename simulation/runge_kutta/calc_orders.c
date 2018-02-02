@@ -10,10 +10,7 @@ void calculate_orders(int mode, long double k[N][D][4], long double w[N][D][4], 
         {
             k[i][j][mode] = h * vprime[i][j];
             w[i][j][mode] = h * calculate_acceleration(i, j, xprime, m);
-            if (i == 1 && j == 0)
-            {
-                printf("calcacc %Le\n", calculate_acceleration(i, j, xprime, m));
-            }
+            printf("i= %d, j= %d, k= %Le, mode= %d\n", i,j,k[i][j][mode], mode);
         }
     }
 }
