@@ -15,16 +15,16 @@ void save_data_to_file(long double t, long double x[N][D], long double v[N][D])
         {
             if (j == 0)
             {
-                fprintf(fp, "%20.0Lf", x[j][k]);
+                fprintf(fp, "%50.0Lf", x[j][k]);
             }
             else
             {
-                fprintf(fp, "%17.3Lf", x[j][k]);
+                fprintf(fp, "%50.3Lf", x[j][k]);
             }
         }
         for (int k = 0; k < D; k++)
         {
-            fprintf(fp, "%17.3Lf", v[j][k]);
+            fprintf(fp, "%50.3Lf", v[j][k]);
         }
     }
 

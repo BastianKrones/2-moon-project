@@ -16,7 +16,7 @@ void next(long double x[N][D], long double v[N][D], long double *t, long double 
     // einfache kopie
     adv_copy(vprime, xprime, v, x, 0, w, k);
 
-    // errechnen von k_0 und 2_0 darum -1
+    // errechnen von k_0 und w_0
     calculate_orders(0, k, w, xprime, vprime, m);
 
     // kopieren der neuen vektoren mit den neuen gegebenheiten
