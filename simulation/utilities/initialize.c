@@ -3,7 +3,6 @@
 void initialize(long double energy, long double t, long double x[N][D], long double v[N][D], long double m[N])
 {
     //initialize starting conditions
-    printf("t_0 = %Lf\n", t_1);
     t = 189216000;
     for (int b = 0; b < N; b++)
     {

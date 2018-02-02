@@ -9,12 +9,26 @@ long double modes(int m)
 
 void adv_copy(long double vprime[N][D], long double xprime[N][D], long double v[N][D], long double x[N][D], int mode, long double w[N][D][4], long double k[N][D][4])
 {
-    for (int i = 0; i < N; i++)
+    if (mode != 0)
     {
-        for (int j = 0; j < D; j++)
+        for (int i = 0; i < N; i++)
         {
-            vprime[i][j] = v[i][j] + modes(mode) * w[i][j][mode];
-            xprime[i][j] = x[i][j] + modes(mode) * k[i][j][mode];
+            for (int j = 0; j < D; j++)
+            {
+                vprime[i][j] = v[i][j] + modes(mode) * w[i][j][mode - 1];
+                xprime[i][j] = x[i][j] + modes(mode) * k[i][j][mode - 1];
+            }
+        }
+    }
+    else
+    {
+        for (int i = 0; i < N; i++)
+        {
+            for (int j = 0; j < D; j++)
+            {
+                vprime[i][j] = v[i][j];
+                xprime[i][j] = x[i][j];
+            }
         }
     }
 }

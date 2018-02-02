@@ -18,11 +18,10 @@ int main(int argc, char *argv[])
 
     initialize(energy, t, x, v, m);
 
-    printf("t = %Lf\n", t);
-    printf("x = %Lf\n", x[1][1]);
     t = 0;
+    save_data_to_file(t, x, v);
     // working loop remember t = t_0
-    while (t <= 200)
+    while (t <= 60*60*24*10000)
     {
         // printf("t = %Lf\n", t);
         next(x, v, &t, m);
