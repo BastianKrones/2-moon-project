@@ -6,7 +6,7 @@ void save_data_to_file(long double t, long double x[N][D], long double v[N][D])
 {
     FILE *fp;
 
-    fp = fopen("./output_coord_cartesian", "w");
+    fp = fopen("./output_coord_cartesian", "a");
 
     fprintf(fp, "%17.0Lf", t);
     for (int j = 0; j < N; j++)
