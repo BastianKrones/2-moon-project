@@ -5,8 +5,8 @@
 long double initial_velocities(int n, int d)
 {
 	const long double initial_velocities[N][D] = {{0, 0},
-												  {0, 15830},
-												  {0, -15833}};
+											 {0, 15830},
+											 {0, -15833}};
 	return initial_velocities[n][d];
 }
 
@@ -32,9 +32,9 @@ long double initial_masses(int n)
 long double initial_pos(int n, int d)
 {
 	const long double initial_positions[N][D] = {{0, 0},
-												 {-151410000, 0},
-												 {151460000, 0}};
-	return initial_positions[n][d];
+											{-151410000, 0},
+											{151460000, 0}};
+	return initial_positions[b][z];
 }
 
 long double h = 60;
