@@ -34,7 +34,7 @@ long double initial_pos(int n, int d)
 	const long double initial_positions[N][D] = {{0, 0},
 											{-151410000, 0},
 											{151460000, 0}};
-	return initial_positions[b][z];
+	return initial_positions[n][d];
 }
 
 long double h = 60;
