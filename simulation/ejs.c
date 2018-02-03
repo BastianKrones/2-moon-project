@@ -3,9 +3,7 @@
 #include "./utilities/initialize.h"
 #include "./utilities/save_to_file.h"
 #include "./check_simulation/energy.h"
-#include "./runge_kutta/connector.h"
 #include "./runge_kutta/next.h"
-#include "./runge_kutta/calc_orders.h"
 
 
 int main(int argc, char *argv[])
@@ -16,34 +14,40 @@ int main(int argc, char *argv[])
     
     fclose(fp);
 
-    //define everything
+    // define everything
     long double energy;
     long double t;
     long double x[N][D], v[N][D];
     long double m[N];
 
+    // initialisation, needs to be changes
     initialize(energy, t, x, v, m);
 
     t = 0;
+
+    long double t_end = 10 * 365 * 24 * 60 * 60;
     save_data_to_file(t, x, v);
+
     // working loop remember t = t_0
     int u = 0;
-    while (t <= 100 * 24 * 60 * 60)
+    while (t <= t_end)
     {
-        // printf("t = %Lf\n", t);
+        // Calculated step
         next(x, v, &t, m);
-        // printf("x = %Lf\n", x[1][1]);
 
-        //to be iterated late on for each step/time
-        if (u%300 == 0)
+        // show a progress and save the data to the file every 300 steps
+
+        if (u%1000 == 0)
         {
-        save_data_to_file(t, x, v);
+
+            save_data_to_file(t, x, v);
+            printf("\r                                    ");
+            printf("\r%4.2Lf\n", t/(t_end) * 100);
         }
-        printf("%Le\n", t/(100*24*60*60));
         u++;
     }
 
     // calculate_kin_energy(1, v, m);
 
-    return 0; //this ... is .... SPARTAAAAA!!!!!
+    return 0; // this ... is .... SPARTAAAAA!!!!!
 }
