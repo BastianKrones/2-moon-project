@@ -13,8 +13,8 @@ int main(int argc, char *argv[])
     FILE *fp;
 
     fp = fopen("./output_coord_cartesian", "w");
+    
     fclose(fp);
-    process_cmd_args(argc, argv);
 
     //define everything
     long double energy;
@@ -27,14 +27,20 @@ int main(int argc, char *argv[])
     t = 0;
     save_data_to_file(t, x, v);
     // working loop remember t = t_0
-    while (t <= 10*24*60*60)
+    int u = 0;
+    while (t <= 100 * 24 * 60 * 60)
     {
         // printf("t = %Lf\n", t);
         next(x, v, &t, m);
         // printf("x = %Lf\n", x[1][1]);
 
         //to be iterated late on for each step/time
+        if (u%300 == 0)
+        {
         save_data_to_file(t, x, v);
+        }
+        printf("%Le\n", t/(100*24*60*60));
+        u++;
     }
 
     // calculate_kin_energy(1, v, m);
