@@ -14,3 +14,4 @@ a.out
 */ex2
 *.exe
 */*.o
+*/output_coord_cartesian
