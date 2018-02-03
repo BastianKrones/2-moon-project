@@ -15,10 +15,11 @@
 
 
 extern long double h;
-
+extern int calculate_velocities;
 
 long double initial_velocities(int n, int d);
+long double calculate_initial_velocities(int n, int d);
 long double initial_masses(int n);
-long double initial_pos(int b, int z);
+long double initial_pos(int n, int d);
 
 #endif
