@@ -70,7 +70,14 @@
       "options": {
         "cwd": "${workspaceFolder}/simulation"
       },
-      "command": "gcc -g utilities/input_parameters.c forces/internal_force.c forces/external_force.c check_simulation/energy.c forces/acceleration.c utilities/save_to_file.c runge_kutta/next_copy.c runge_kutta/calc_orders.c runge_kutta/connector.c test/test.c -o test/test -lrt -lm",
+      "windows": {
+        "command":
+          "gcc -g utilities/input_parameters.c forces/internal_force.c forces/external_force.c check_simulation/energy.c forces/acceleration.c utilities/save_to_file.c runge_kutta/next_copy.c runge_kutta/calc_orders.c runge_kutta/connector.c test/test.c -o test/test -lm"
+      },
+      "linux": {
+        "command":
+          "gcc -g utilities/input_parameters.c forces/internal_force.c forces/external_force.c check_simulation/energy.c forces/acceleration.c utilities/save_to_file.c runge_kutta/next_copy.c runge_kutta/calc_orders.c runge_kutta/connector.c test/test.c -o test/test -lrt -lm"
+      },
       "dependsOn": "CLEAR",
       "problemMatcher": [],
       "presentation": {

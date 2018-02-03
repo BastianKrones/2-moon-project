@@ -171,7 +171,8 @@ MU_TEST(energy_pot_check)
 	// printf("Pot energy 1 2: %.30Le\n", -G * pow(10, -11) * m[1] * m[2] / calculate_distance(1, 2, x));
 	// printf("Pot energy 0: %.30Le\n", should);
 	long double calc_pot_energy = 0;
-	calc_pot_energy = calculate_pot_energy(x, v, m);
+	int i = 1;
+	calc_pot_energy = calculate_pot_energy(i, x, v, m);
 	// printf("Pot energy 1: %.30Le\n", calc_pot_energy);
 	// printf("Pot energy Total diff: %.30Le\n", calc_pot_energy - should);
 	mu_check(fabs(calc_pot_energy - should) <= eps);
@@ -239,8 +240,8 @@ MU_TEST(calc_orders_check)
 	long double m[] = {54278, 1241, 1252};
 	long double x[3][2] = {{0, 0}, {6319, 653}, {4567, -4674}};
 
-	long double w[3][2][3];
-	long double k[3][2][3];
+	long double w[3][2][4];
+	long double k[3][2][4];
 
 
 	long double should_w = -1 * 9.011933036 * pow(10, -14) * 0.05;
@@ -283,6 +284,7 @@ MU_TEST_SUITE(connector_suite)
 int main(int argc, char *argv[])
 {
 	// ONLY WORKS FOR D = 2 AND N > 3
+	long double h = 0.05;
 	if (D == 2 && N >= 3 && h == 0.05)
 	{
 		MU_RUN_SUITE(input_parameters_suite);
