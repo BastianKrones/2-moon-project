@@ -1,7 +1,7 @@
 #include "next.h"
 
+// doing unit tests later on
 void next(long double x[N][D], long double v[N][D], long double *t, long double m[N])
-// testing this function would be a litte to complicadet, i'll do it later when i have enaught time. for now i will say it is runnung correctly
 {
 
     long double xprime[N][D];

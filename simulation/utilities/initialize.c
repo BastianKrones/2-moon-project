@@ -2,15 +2,22 @@
 
 void initialize(long double energy, long double t, long double x[N][D], long double v[N][D], long double m[N])
 {
-    //initialize starting conditions
+    //initialide starting conditions
     t = 189216000;
-    for (int b = 0; b < N; b++)
+    for (int n = 0; n < N; n++)
     {
-        m[b] = initial_masses(b);
-        for (int z = 0; z < D; z++)
+        m[n] = initial_masses(n);
+        for (int d = 0; d < D; d++)
         {
-            x[b][z] = initial_pos(b, z);
-            v[b][z] = initial_velocities(b, z);
+            x[n][d] = initial_pos(n, d);
+            if (calculate_velocities == 1)
+            {
+                v[n][d] = calculate_initial_velocities(n, d);
+            }
+            else
+            {
+                v[n][d] = initial_velocities(n, d);
+            }
         }
     }
 }
