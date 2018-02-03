@@ -6,7 +6,6 @@ uprint
 uprint.c
 uprint.h
 a.out
-*/ejs
 */test
 */Intr_ex_1
 */Intr_ex_2
@@ -14,3 +13,5 @@ a.out
 */ex2
 *.exe
 */*.o
+
+./output_coord_cartesian
