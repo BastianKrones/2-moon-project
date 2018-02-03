@@ -5,17 +5,19 @@
 long double initial_velocities(int n, int d)
 {
 	const long double initial_velocities[N][D] = {{0, 0},
-											 {0, 500512.02},
-											 {0, 500429.39}};
+												  {0, 1587000},
+												  {0, -1587000}};
 	return initial_velocities[n][d];
 }
 
 // Mass of all bodies
 long double initial_masses(int n)
 {
-	const long double initial_masses[N] = {5.68319 * pow(10, 26),
-									  5.266 *  pow(10, 17),
-									  1.912 * pow(10, 18)};
+	const long double initial_masses[N] = {
+		5.699 * pow(10, 26), // 5.68319 * pow(10, 26),
+		1.98 * pow(10, 18),  //   5.266 *  pow(10, 17),
+		5.5 * pow(10, 17)	// 1.912 * pow(10, 18)};
+	};
 	return initial_masses[n];
 }
 
@@ -23,8 +25,8 @@ long double initial_masses(int n)
 long double initial_pos(int b, int z)
 {
 	const long double initial_positions[N][D] = {{0, 0},
-											{151410, 0},
-											{151460, 0}};
+												 {151472000, 0},
+												 {-151422, 0}};
 	return initial_positions[b][z];
 }
 

@@ -1,7 +1,7 @@
 #include "next.h"
 
+// doing unit tests later on
 void next(long double x[N][D], long double v[N][D], long double *t, long double m[N])
-// testing this function would be a litte to complicadet, i'll do it later when i have enaught time. for now i will say it is runnung correctly
 {
 
     long double xprime[N][D];
@@ -13,13 +13,13 @@ void next(long double x[N][D], long double v[N][D], long double *t, long double 
 
     // printf("xlol = %Lf\n", xprime[1][1]);
 
-    // einfache kopie
+    // copy of vprime and xprime
     adv_copy(vprime, xprime, v, x, 0, w, k);
 
-    // errechnen von k_0 und w_0
+    // calculate k_0 und w_0
     calculate_orders(0, k, w, xprime, vprime, m);
 
-    // kopieren der neuen vektoren mit den neuen gegebenheiten
+    // copy new vectors with new conditions
     adv_copy(vprime, xprime, v, x, 1, w, k);
 
     calculate_orders(1, k, w, xprime, vprime, m);
