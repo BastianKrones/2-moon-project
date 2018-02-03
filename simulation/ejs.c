@@ -35,6 +35,7 @@ int main(int argc, char *argv[])
         if (u % 1 == 0)
         {
 
+<<<<<<< HEAD
             printf("%4.2Lf\n", t / (t_end)*100);
 
             // fprintf(fp, "%50.4Lf", t);
@@ -54,6 +55,14 @@ int main(int argc, char *argv[])
             fprintf(fp, "%20.4Lf", p);
 
             fprintf(fp, "\n");
+=======
+        // show a progress and save the data to the file every x steps
+        if (u%300 == 0)
+        {
+
+            save_data_to_file(t, x, v);
+            printf("\r%4.2Lf\n", t/(t_end) * 100);
+>>>>>>> 01d481f2db3d8eaa440a4ee08682146be4437c23
         }
 
         u++;
