@@ -35,13 +35,11 @@ int main(int argc, char *argv[])
         // Calculated step
         next(x, v, &t, m);
 
-        // show a progress and save the data to the file every 300 steps
-
-        if (u%1000 == 0)
+        // show a progress and save the data to the file every x steps
+        if (u%300 == 0)
         {
 
             save_data_to_file(t, x, v);
-            printf("\r                                    ");
             printf("\r%4.2Lf\n", t/(t_end) * 100);
         }
         u++;

@@ -18,22 +18,22 @@
 //
 MU_TEST(h_check)
 {
-	mu_check(h == 0.05);
+	mu_check(h == 60);
 }
 
 MU_TEST(initial_velocity_check)
 {
-	mu_check(initial_velocities(1, 1) == -23630);
+	mu_check(initial_velocities(1, 1) == 15830);
 }
 
 MU_TEST(initial_masses_check)
 {
-	mu_check(initial_masses(2) == 125252);
+	mu_check(initial_masses(2) == 5.5 * pow(10, 17));
 }
 
 MU_TEST(initial_pos_check)
 {
-	mu_check(initial_pos(1, 1) == 6532892);
+	mu_check(initial_pos(1, 0) == -151410000);
 }
 
 MU_TEST_SUITE(input_parameters_suite)
@@ -58,9 +58,17 @@ MU_TEST(fInternal_check)
 	long double eps = 0.00000000000000000001;
 
 	// masses and positions for the system
-	long double m[] = {54278, 1241, 1252};
-	long double x[3][2] = {{0, 0}, {6319, 653}, {4567, -4674}};
+	long double m[] = {
+		5.699 * pow(10, 26), // 5.68319 * pow(10, 26),
+		1.98 * pow(10, 18),  //   5.266 *  pow(10, 17),
+		5.5 * pow(10, 17)	// 1.912 * pow(10, 18)};
+	};
+	long double x[3][2] = {{0, 0},
+						   {-151410000, 0},
+						   {151460000, 0}};
 
+	printf("\n\033[0;31m internal force: %Lf\n", fInternal(1, 2, 0, x, m));
+	printf("\033[0m");
 	mu_check(fabsl(fInternal(1, 2, 0, x, m) - should) <= eps);
 	mu_check(fInternal(1, 1, 0, x, m) == 0);
 	mu_check(fInternal(0, 2, 0, x, m) == 0);
@@ -141,11 +149,14 @@ MU_TEST(kin_energy_check)
 
 MU_TEST(distance_check)
 {
-	long double x[3][2] = {{0, 0}, {151000, 0}, {-151500, 0}};
+	long double x[3][2] = {{0, 0},
+						   {-151410000, 0},
+						   {151460000, 0}};
 	long double eps = 0.00000001;
-	long double should = 302500;
+	long double should = 3.0287 * pow(10,8);
+	// printf("\n\033[0;31mDistance: %Lf\n", calculate_distance(1, 2, x));
+	// printf("\033[0m");
 
-	printf("\nDistance: %Lf\n\n", calculate_distance(1, 2, x));
 	mu_check(fabs(calculate_distance(1, 2, x) - should) <= eps);
 }
 
@@ -243,10 +254,8 @@ MU_TEST(calc_orders_check)
 	long double w[3][2][4];
 	long double k[3][2][4];
 
-
 	long double should_w = -1 * 9.011933036 * pow(10, -14) * 0.05;
 	long double should_k = 16281.7;
-
 
 	calculate_orders(0, k, w, x, v, m);
 	long double eps = 0.000000000001;
@@ -274,12 +283,10 @@ MU_TEST(connector_check)
 	mu_check(fabsl(component_connect(1, 0, w, x) - should) <= eps);
 }
 
-
 MU_TEST_SUITE(connector_suite)
 {
 	MU_RUN_TEST(connector_check);
 }
-
 
 int main(int argc, char *argv[])
 {
