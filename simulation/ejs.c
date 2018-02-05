@@ -20,9 +20,10 @@ int main(int argc, char *argv[])
     long double m[N];
 
     // initialisation, needs to be changes
+    process_cmd_args(argc, argv);
+
     initialize(energy, t, x, v, m);
 
-    process_cmd_args(argc, argv);
 
     t = 0;
 

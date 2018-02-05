@@ -3,7 +3,6 @@
 void initialize(long double energy, long double t, long double x[N][D], long double v[N][D], long double m[N])
 {
     //initialide starting conditions
-    t = 189216000;
     for (int n = 0; n < N; n++)
     {
         m[n] = initial_masses(n);
