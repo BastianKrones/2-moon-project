@@ -35,7 +35,7 @@ int main(int argc, char *argv[])
         if (u % 1 == 0)
         {
 
-            printf("%4.2Lf\n", t / (t_end)*100);
+            printf("\r%4.2Lf %%", t / (t_end)*100);
 
             // fprintf(fp, "%50.4Lf", t);
 
@@ -62,6 +62,7 @@ int main(int argc, char *argv[])
         next(x, v, &t, m);
     }
 
+    printf("\rDONE!            \n");
     fclose(fp);
 
     // calculate_kin_energy(1, v, m);
