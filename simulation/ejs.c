@@ -22,20 +22,19 @@ int main(int argc, char *argv[])
     // initialisation, needs to be changes
     initialize(energy, t, x, v, m);
 
+    process_cmd_args(argc, argv);
+
     t = 0;
 
-    long double t_end = 20 * 365 * 24 * 60 * 60;
-
     fp = fopen("./output_coord_cartesian", "a");
+
     // working loop remember t = t_0
-    int u = 0;
     while (t <= t_end)
     {
         // save_data_to_file(t, x, v);
         if (u % 1 == 0)
         {
 
-<<<<<<< HEAD
             printf("%4.2Lf\n", t / (t_end)*100);
 
             // fprintf(fp, "%50.4Lf", t);
@@ -55,14 +54,6 @@ int main(int argc, char *argv[])
             fprintf(fp, "%20.4Lf", p);
 
             fprintf(fp, "\n");
-=======
-        // show a progress and save the data to the file every x steps
-        if (u%300 == 0)
-        {
-
-            save_data_to_file(t, x, v);
-            printf("\r%4.2Lf\n", t/(t_end) * 100);
->>>>>>> 01d481f2db3d8eaa440a4ee08682146be4437c23
         }
 
         u++;

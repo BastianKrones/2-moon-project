@@ -38,4 +38,7 @@ long double initial_pos(int n, int d)
 }
 
 long double h = 60;
+long double t_end = 60 * 60 * 24 * 356 * 10;
+int u = 300;
+
 int calculate_velocities = 0;
