@@ -45,6 +45,11 @@
 | argument      | meaning                   |
 |---------------|:-------------------------:|
 | -h            | set initial steplenght    |
+| -v            | calculate the inital velocity|
+| -th           | set the runtime in hours  |
+| -td           | set the runtime in days   |
+| -ty           | set the runtime in years  |
+| -u            | set the steplenght when saving the data to the file|
 
 # Unit-Testing with `Minunit`
 For more defails see https://github.com/siu/minunit
