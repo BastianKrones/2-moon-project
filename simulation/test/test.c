@@ -23,7 +23,7 @@ MU_TEST(h_check)
 
 MU_TEST(initial_velocity_check)
 {
-	mu_check(initial_velocities(1, 1) == 15830);
+	mu_check(initial_velocities(1, 1) == 16830);
 }
 
 MU_TEST(initial_masses_check)
@@ -33,7 +33,7 @@ MU_TEST(initial_masses_check)
 
 MU_TEST(initial_pos_check)
 {
-	mu_check(initial_pos(1, 0) == -151410000);
+	mu_check(initial_pos(1, 0) == -151422000);
 }
 
 MU_TEST_SUITE(input_parameters_suite)
@@ -52,10 +52,10 @@ MU_TEST(fInternal_check)
 	// ONLY WORKS FOR D = 2 AND N > 3
 
 	// expectet value
-	long double should = -1 * 1.030254536 * pow(10, -12);
+	long double should = 7.92205670710287 * pow(10, 8);
 
 	// allowed error for float
-	long double eps = 0.00000000000000000001;
+	long double eps = 0.000001;
 
 	// masses and positions for the system
 	long double m[] = {
@@ -64,14 +64,16 @@ MU_TEST(fInternal_check)
 		5.5 * pow(10, 17)	// 1.912 * pow(10, 18)};
 	};
 	long double x[3][2] = {{0, 0},
-						   {-151410000, 0},
-						   {151460000, 0}};
+						   {-151422000, 0},
+						   {151472000, 0}};
 
-	printf("\n\033[0;31m internal force: %Lf\n", fInternal(1, 2, 0, x, m));
-	printf("\033[0m");
+	// printf("\n\033[0;31m internal force: %Lf\n", fInternal(0, 2, 0, x, m));
+	// printf("\n\033[0;31m internal force: %Lf\n", should);
+	// printf("\n\033[0;31m internal force: %Lf\n", fabsl(fInternal(1, 2, 0, x, m) - should));
+	// printf("Error: %Lf", eps);
+	// printf("\033[0m\n");
 	mu_check(fabsl(fInternal(1, 2, 0, x, m) - should) <= eps);
 	mu_check(fInternal(1, 1, 0, x, m) == 0);
-	mu_check(fInternal(0, 2, 0, x, m) == 0);
 }
 
 MU_TEST_SUITE(internal_force_suite)
@@ -92,8 +94,19 @@ MU_TEST(fExternal_check)
 	long double eps = 0.000000000000000001;
 
 	// masses and positions for the system
-	long double m[] = {54278, 1241, 1252};
-	long double x[3][2] = {{0, 0}, {6319, 653}, {4567, -4674}};
+	long double m[] = {
+		5.699 * pow(10, 26),
+		1.98 * pow(10, 18),
+		5.5 * pow(10, 17)};
+	long double x[3][2] = {{0, 0},
+						   {-151422000, 0},
+						   {151472000, 0}};
+
+	printf("\n\033[0;31m external force: %Le\n", fExternal(1, 2, x, m));
+	printf("\n\033[0;31m external force: %Le\n", should);
+	printf("\n\033[0;31m external force: %Lf\n", fExternal(1, 2, x, m) - should);
+	printf("Error: %Lf", eps);
+	printf("\033[0m\n");
 
 	mu_check(fabsl(fExternal(1, 0, x, m) - should) <= eps);
 	mu_check(fExternal(0, 1, x, m) == 0);
@@ -153,7 +166,7 @@ MU_TEST(distance_check)
 						   {-151410000, 0},
 						   {151460000, 0}};
 	long double eps = 0.00000001;
-	long double should = 3.0287 * pow(10,8);
+	long double should = 3.0287 * pow(10, 8);
 	// printf("\n\033[0;31mDistance: %Lf\n", calculate_distance(1, 2, x));
 	// printf("\033[0m");
 
@@ -182,8 +195,9 @@ MU_TEST(energy_pot_check)
 	// printf("Pot energy 1 2: %.30Le\n", -G * pow(10, -11) * m[1] * m[2] / calculate_distance(1, 2, x));
 	// printf("Pot energy 0: %.30Le\n", should);
 	long double calc_pot_energy = 0;
-	int i = 1;
-	calc_pot_energy = calculate_pot_energy(i, x, v, m);
+	int i = 0;
+	int j = 1;
+	calc_pot_energy = calculate_potential_energy(i, j, x, m);
 	// printf("Pot energy 1: %.30Le\n", calc_pot_energy);
 	// printf("Pot energy Total diff: %.30Le\n", calc_pot_energy - should);
 	mu_check(fabs(calc_pot_energy - should) <= eps);

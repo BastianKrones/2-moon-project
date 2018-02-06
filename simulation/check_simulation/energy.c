@@ -36,11 +36,11 @@ long double calculate_energy(long double x[N][D], long double v[N][D], long doub
 {
     long double energy = 0;
 
-    for (i; i < N; i++)
+    for (int i = 0; i < N; i++)
     {
         energy += calculate_kin_energy(i, v, m);
 
-        // this choice of loop prevents dubbeld calculation for the potential energy ex.
+        // this choice of loop prevents double calculation for the potential energy ex.
         // 1 -> 2; 2 -> 1
         // drawing this by hand makes is clear
         for (int j = i; j < N; j++)
