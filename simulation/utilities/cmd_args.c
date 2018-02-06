@@ -42,6 +42,13 @@ void process_cmd_args(int argc, char *argv[])
             printf("Please enter after how many steps the step should be saved: ");
             scanf("%Lf", &u);
         }
+        // activate energy check
+        // this activates the variable step size
+        else if ((strcmp(argv[i], "-ec") == 0))
+        {
+            enable_energy_check = 1;
+            enable_varriable_stepsize = 1;
+        }
         // catch any wrong arguments
         else
         {

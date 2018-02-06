@@ -40,5 +40,12 @@ long double initial_pos(int n, int d)
 long double h = 60;
 long double t_end = 60 * 60 * 24 * 356 * 10;
 int u = 300;
+// choose prec_min < prec_max
+long double prec_min = 0.1;
+long double prec_max = 0.5;
 
 int calculate_velocities = 0;
+int enable_energy_check = 0;
+int enable_step_check = 0;
+int enable_varriable_stepsize = 0;
+int step_damage = 0;
