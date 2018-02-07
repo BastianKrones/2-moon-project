@@ -42,6 +42,7 @@
 | -ty           | set the runtime in years  |
 | -u            | set the steplenght when saving the data to the file|
 | -ec           | enables energy check      |
+| -sc           | enables step check (programm gets for long simulations really slow and the simulation gets really bad, probably there is a better solution for comparring 2 steps with one step)|
 | -vs           | enables varriable stepsize|
 | -pmin         | set minimap precition     |
 | -pmax         | set maximal precition     |

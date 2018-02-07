@@ -6,6 +6,6 @@
 #ifndef NEXTN
 #define NEXTN
 
-void next(long double x[N][D], long double v[N][D], long double *t,  long double m[N]);
+void next(long double x[N][D], long double v[N][D], long double *t,  long double m[N], long double L);
 
 #endif

@@ -31,6 +31,60 @@ int check(long double v[N][D], long double x[N][D], long double t, long double e
         }
     }
 
+    if (enable_step_check == 1)
+    // create data to 2 step
+    {
+        long double x_test[N][D];
+        long double v_test[N][D];
+        long double t_test;
+
+        t_test = t_old;
+        for (int i = 0; i < N; i++)
+        {
+            for (int j = 0; j < D; j++)
+            {
+                x_test[i][j] = x_old[i][j];
+                v_test[i][j] = v_old[i][j];
+            }
+        }
+
+        // do 2 step
+        next(x_test, v_test, &t_test, m, h / 2);
+        next(x_test, v_test, &t_test, m, h / 2);
+
+        //calculate maximum distance between the 2 step and 1 step coordinate
+        long double max = 0;
+        long double distance;
+
+        for (int i = 0; i < N; i++)
+        {
+            for (int j = 0; j < D; j++)
+            {
+                distance = fabsl(x_test[i][j] - x[i][j]);
+                if (max < distance)
+                {
+                    max = distance;
+                }
+            }
+        }
+
+        // this is made to make step check kind of equivalent to energy check
+        long double factor = 8500000000000;
+
+        // evaluate the distance
+        if (max < factor * prec_min)
+        {
+            check_result = 1;
+        }
+        else if (max < factor * prec_max)
+        {
+            check_result = 0;
+        }
+        else
+        {
+            check_result = -1;
+        }
+    }
 
     return check_result;
 }

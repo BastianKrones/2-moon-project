@@ -123,7 +123,7 @@ int main(int argc, char *argv[])
         // calculate the next step
         if ((valid_step == 0) || (enable_varriable_stepsize == 0))
         {
-            next(x, v, &t, m);
+            next(x, v, &t, m, h);
             energy = calculate_energy(x, v, m);
             // convergence_value = 1;
             k++;
@@ -132,7 +132,7 @@ int main(int argc, char *argv[])
         // note: this means the step needs to be increased
         // there is no problem running this step
         {
-            next(x, v, &t, m);
+            next(x, v, &t, m, h);
             recalculate_stepsize(valid_step, convergence_value);
             energy = calculate_energy(x, v, m);
             convergence_value += 1;

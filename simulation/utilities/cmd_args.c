@@ -45,11 +45,25 @@ void process_cmd_args(int argc, char *argv[])
         // activate energy check
         else if ((strcmp(argv[i], "-ec") == 0))
         {
-            enable_energy_check = 1;
+            if (enable_step_check == 0)
+            {
+                enable_energy_check = 1;
+            }
+            else
+            {
+                printf("ERROR: Step check is already enabled");
+            }
         }
         else if ((strcmp(argv[i], "-sc") == 0))
         {
-            enable_step_check = 1;
+            if (enable_energy_check == 0)
+            {
+                enable_step_check = 1;
+            }
+            else
+            {
+                printf("ERROR: Energy check is already enabled");
+            }
         }
         // enable variable step siz
         else if ((strcmp(argv[i], "-vs") == 0))

@@ -1,7 +1,7 @@
 #include "next.h"
 
 // doing unit tests later on
-void next(long double x[N][D], long double v[N][D], long double *t, long double m[N])
+void next(long double x[N][D], long double v[N][D], long double *t, long double m[N], long double L)
 {
 
     long double xprime[N][D];
@@ -14,7 +14,7 @@ void next(long double x[N][D], long double v[N][D], long double *t, long double 
     {
         adv_copy(vprime, xprime, v, x, i, w, k);
 
-        calculate_orders(i, k, w, xprime, vprime, m);
+        calculate_orders(i, k, w, xprime, vprime, m, L);
     }
 
     for (int i = 0; i < N; i++)
@@ -25,5 +25,5 @@ void next(long double x[N][D], long double v[N][D], long double *t, long double 
             v[i][j] = component_connect(i, j, w, v);
         }
     }
-    *t = *t + h;
+    *t = *t + L;
 }
