@@ -15,4 +15,5 @@ a.out
 */*.o
 */output_coord_cartesian
 
+*/output_coord_cartesian
 ./output_coord_cartesian
