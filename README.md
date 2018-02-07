@@ -27,7 +27,7 @@
 
 
 ### TODO-List
-7. step check
+7. some tests are missing
 12. PARTY!!!
 
 
