@@ -38,7 +38,7 @@
         "isDefault": true
       },
       "command":
-        "gcc -g utilities/input_parameters.c forces/internal_force.c forces/external_force.c utilities/initialize.c utilities/cmd_args.c check_simulation/energy.c forces/acceleration.c utilities/save_to_file.c runge_kutta/next_copy.c runge_kutta/next.c runge_kutta/calc_orders.c runge_kutta/connector.c ejs.c -o ejs -lm",
+        "gcc -g utilities/input_parameters.c forces/internal_force.c forces/external_force.c utilities/initialize.c utilities/cmd_args.c check_simulation/energy.c forces/acceleration.c utilities/save_to_file.c runge_kutta/next_copy.c runge_kutta/next.c runge_kutta/calc_orders.c runge_kutta/connector.c check_simulation/check.c utilities/var_step.c ejs.c -o ejs -lm",
       "dependsOn": "CLEAR",
       "problemMatcher": [],
       "presentation": {

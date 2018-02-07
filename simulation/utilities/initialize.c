@@ -1,6 +1,6 @@
 #include "./initialize.h"
 
-void initialize(long double energy, long double t, long double x[N][D], long double v[N][D], long double m[N])
+void initialize(long double *energy, long double *t, long double x[N][D], long double v[N][D], long double m[N])
 {
     //initialide starting conditions
     for (int n = 0; n < N; n++)
@@ -19,4 +19,6 @@ void initialize(long double energy, long double t, long double x[N][D], long dou
             }
         }
     }
+    *t = t_start;
+    *energy = calculate_energy(x, v, m);
 }

@@ -40,14 +40,32 @@ void process_cmd_args(int argc, char *argv[])
         {
             long double tim;
             printf("Please enter after how many steps the step should be saved: ");
-            scanf("%Lf", &u);
+            scanf("%d", &u);
         }
         // activate energy check
-        // this activates the variable step size
         else if ((strcmp(argv[i], "-ec") == 0))
         {
             enable_energy_check = 1;
+        }
+        else if ((strcmp(argv[i], "-sc") == 0))
+        {
+            enable_step_check = 1;
+        }
+        // enable variable step siz
+        else if ((strcmp(argv[i], "-vs") == 0))
+        {
             enable_varriable_stepsize = 1;
+        }
+        //Modify precition
+        else if (strcmp(argv[i], "-pmin") == 0)
+        {
+            printf("Input minimal precition: ");
+            scanf("%Lf", &prec_min);
+        }
+        else if (strcmp(argv[i], "-pmax") == 0)
+        {
+            printf("Input maximal precition: ");
+            scanf("%Lf", &prec_max);
         }
         // catch any wrong arguments
         else

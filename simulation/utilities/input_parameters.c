@@ -38,11 +38,12 @@ long double initial_pos(int n, int d)
 }
 
 long double h = 60;
+long double t_start = 0;
 long double t_end = 60 * 60 * 24 * 356 * 10;
-int u = 300;
+int u = 1;
 // choose prec_min < prec_max
-long double prec_min = 0.1;
-long double prec_max = 0.5;
+long double prec_min = 0.0000001;
+long double prec_max = 0.00000011;
 
 int calculate_velocities = 0;
 int enable_energy_check = 0;

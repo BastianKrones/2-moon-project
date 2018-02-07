@@ -16,26 +16,17 @@
 
 ## Project progress
 
-1. Exercise 1 complete
-2. Exercise 2 complete
+1. Exercise 1
+2. Exercise 2
 3. Simulation
-    1. fInternal complete
-    2. fExternal comoplete
-    3. acceleration complete
-4. next function
-    1. advanced copy function
-    3. calculate orders function 
+    1. Next function
+    2. Plot
+    3. Energy check
+    4. varriable stepsize
 
 
 
 ### TODO-List
-1. calculate energ
-2. energy check
-3. export data
-4. programm gnuplot 
-5. progress status bar for calculation
-6. next function
-    1. put everything together
 7. step check
 12. PARTY!!!
 
@@ -50,6 +41,10 @@
 | -td           | set the runtime in days   |
 | -ty           | set the runtime in years  |
 | -u            | set the steplenght when saving the data to the file|
+| -ec           | enables energy check      |
+| -vs           | enables varriable stepsize|
+| -pmin         | set minimap precition     |
+| -pmax         | set maximal precition     |
 
 # Unit-Testing with `Minunit`
 For more defails see https://github.com/siu/minunit

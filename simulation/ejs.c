@@ -5,6 +5,8 @@
 #include "./check_simulation/energy.h"
 #include "./runge_kutta/next.h"
 #include "./check_simulation/check.h"
+#include "./utilities/var_step.h"
+#include "./check_simulation/check.h"
 
 int main(int argc, char *argv[])
 {
@@ -22,10 +24,15 @@ int main(int argc, char *argv[])
     long double x[N][D], v[N][D];
     long double m[N];
 
+    long double t_old;
+    long double energy_old;
+    long double x_old[N][D], v_old[N][D];
+
+    // create test date for energy check
     // initialisation, needs to be changes
     process_cmd_args(argc, argv);
 
-    initialize(energy, t, x, v, m);
+    initialize(&energy, &t, x, v, m);
 
     t = 0;
 
@@ -36,8 +43,8 @@ int main(int argc, char *argv[])
     convergence_value = 1;
     while (t <= t_end)
     {
-        // save_data_to_file(t, x, v);
-        if (k % u == 0)
+        // Save data and create output
+        if ((k % u == 0) && (valid_step == 1 || valid_step == 0))
         {
             if (step_damage == 0)
             {
@@ -59,39 +66,87 @@ int main(int argc, char *argv[])
                 }
             }
 
-            long double p = calculate_distance(1, 2, x);
-
-            fprintf(fp, "%20.4Lf", p);
-
             fprintf(fp, "\n");
         }
 
-        k++;
+        //########################################################################
+        //########################################################################
+        //##########################Calculate#####################################
+        //############################Step########################################
+        //########################################################################
+        //########################################################################
 
         /*
         There is a possibility by just changing h by dubbeling or halving it
         that you could miss the wanted area where valid_step = 1, we encounter
         this issue by letting h converge into this Area
         */
-        // Calculated step and checking the simulation
+
         // note: checks beeing disabeld will be handeld in ckeck()
-        valid_step = check(v, x, t, m);
-        if (valid_step == 0)
+        if (k != 0)
+        {
+            valid_step = check(v, x, t, energy, v_old, x_old, t_old, energy_old, m);
+        }
+        else
+        {
+            valid_step = 0;
+        }
+
+        // create copy for next step and backup precition error
+        if (valid_step == -1)
+        {
+            t = t_old;
+            for (int i = 0; i < N; i++)
+            {
+                for (int j = 0; j < D; j++)
+                {
+                    energy = energy_old;
+                    x[i][j] = x_old[i][j];
+                    v[i][j] = v_old[i][j];
+                }
+            }
+        }
+        else
+        {
+            t_old = t;
+            for (int i = 0; i < N; i++)
+            {
+                for (int j = 0; j < D; j++)
+                {
+                    energy_old = energy;
+                    x_old[i][j] = x[i][j];
+                    v_old[i][j] = v[i][j];
+                }
+            }
+        }
+
+        // calculate the next step
+        if ((valid_step == 0) || (enable_varriable_stepsize == 0))
         {
             next(x, v, &t, m);
-            convergence_value = 1;
+            energy = calculate_energy(x, v, m);
+            // convergence_value = 1;
+            k++;
         }
         else if (valid_step == 1)
         // note: this means the step needs to be increased
         // there is no problem running this step
         {
-            recalculate_stepsize(valid_step);
             next(x, v, &t, m);
+            recalculate_stepsize(valid_step, convergence_value);
+            energy = calculate_energy(x, v, m);
             convergence_value += 1;
+            k++;
         }
         else if (valid_step == -1)
         {
-            recalculate_stepsize(valid_step);
+            recalculate_stepsize(valid_step, convergence_value);
+        }
+
+        // This starts the error message for the user
+        if (valid_step == 1)
+        {
+            step_damage = 1;
         }
     }
 
